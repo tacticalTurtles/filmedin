@@ -1,16 +1,17 @@
--- DROP DATABASE IF EXISTS filmedin;
+-- USE heroku_a82769b4f508eba;
 
--- CREATE DATABASE filmedin;
+DROP DATABASE IF EXISTS filmedin;
 
--- USE filmedin;
+CREATE DATABASE filmedin;
 
-USE heroku_a82769b4f508eba;
+USE filmedin;
+
 DROP TABLE IF EXISTS rating;
 DROP TABLE IF EXISTS friends;
 DROP TABLE IF EXISTS film;
 DROP TABLE IF EXISTS profile;
 DROP TABLE IF EXISTS user;
-    
+
 CREATE TABLE user (
   id INTEGER NOT NULL AUTO_INCREMENT,
   username VARCHAR(255) NOT NULL,
@@ -21,11 +22,11 @@ CREATE TABLE user (
 
 -- ---
 -- Table profile
--- 
+--
 -- ---
 
 DROP TABLE IF EXISTS profile;
-    
+
 CREATE TABLE profile (
   id INTEGER NOT NULL AUTO_INCREMENT,
   userID INTEGER NOT NULL,
@@ -40,11 +41,11 @@ CREATE TABLE profile (
 
 -- ---
 -- Table movie
--- 
+--
 -- ---
 
 DROP TABLE IF EXISTS film;
-    
+
 CREATE TABLE film (
  id INTEGER NOT NULL AUTO_INCREMENT,
   guideBox INTEGER NOT NULL,
@@ -71,11 +72,11 @@ CREATE TABLE film (
 
 -- ---
 -- Table rating
--- 
+--
 -- ---
 
 DROP TABLE IF EXISTS rating;
-    
+
 CREATE TABLE rating (
   id INTEGER NOT NULL AUTO_INCREMENT,
   profileID INTEGER NOT NULL,
@@ -88,11 +89,11 @@ CREATE TABLE rating (
 
 -- ---
 -- Table friends
--- 
+--
 -- ---
 
 DROP TABLE IF EXISTS friends;
-    
+
 CREATE TABLE friends (
   id INTEGER NOT NULL AUTO_INCREMENT,
   primaryID INTEGER NOT NULL,
@@ -102,7 +103,7 @@ CREATE TABLE friends (
 );
 
 -- ---
--- Foreign Keys 
+-- Foreign Keys
 -- ---
 
 ALTER TABLE profile ADD FOREIGN KEY (userID) REFERENCES user (id);

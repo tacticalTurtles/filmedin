@@ -2,10 +2,10 @@ var mysql = require('mysql');
 
 var db_config = {
   connectionLimit: 10,
-  host: 'us-cdbr-iron-east-04.cleardb.net',
-  user: 'bd93d2c16741f2',
-  password: '70b3331d',
-  database: 'heroku_a82769b4f508eba'
+  host: 'localhost', //us-cdbr-iron-east-04.cleardb.net
+  user: 'root',
+  password: '',
+  database: 'filmedin'
 }
 
 var pool = mysql.createPool(db_config);

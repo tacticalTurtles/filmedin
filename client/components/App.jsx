@@ -54,7 +54,7 @@ class App extends React.Component {
     })
   }
   rateFilm(rating, filmid) {
-    
+
     helpers.addRating(filmid, rating, '').then(response => {
       console.log('rated');
     })
@@ -104,7 +104,6 @@ class App extends React.Component {
 
   handleHomeClick() {
     helpers.getHome().then(response => {
-      console.log(response.data);
       helpers.getFeed().then(feed => {
         response.data.friends = response.data.friends.filter(friend => (friend.ID !== 0))
         this.setState({
@@ -122,9 +121,9 @@ class App extends React.Component {
   render() {
 	  if (!this.state.isLoggedIn) {
       return (
-        <SignUp 
-          handleLogInClick={this.handleLogInClick} 
-        /> 
+        <SignUp
+          handleLogInClick={this.handleLogInClick}
+        />
       )
     } else {
       return (
@@ -157,19 +156,19 @@ class App extends React.Component {
                   handleUserClick={this.handleUserClick}
                   user={this.state.clickedUser}
                   addFriend={this.addFriend}
-                />              
+                />
             ) : (this.state.view === 'showSearchFilmView') ? (
                 <SearchFilm
                   search={this.state.searchFilm}
                   handleFilmClick={this.handleFilmClick}
-                />               
+                />
             ) : (
                 <SearchUser
                   friends={this.state.profile.friends}
                   search={this.state.searchUser}
                   handleUserClick={this.handleUserClick}
                   addFriend={this.addFriend}
-                />              
+                />
             )
           }
           </div>

@@ -9,7 +9,7 @@ var getRequest = function (url) {
 
     },
     url: url,
-    baseURL: 'https://filmedin.herokuapp.com/',
+    baseURL: 'http://localhost:5000/',
     method: 'GET'
   }
   return request;
@@ -19,14 +19,14 @@ var helpers = {};
 
 helpers.logInUser = function(data) {
   return axios.request({
-    url: 'https://filmedin.herokuapp.com/signin',
+    url: 'http://localhost:5000/signin',
     method: 'POST',
     data: data
   });
 }
 helpers.signUpUser = function(data) {
   return axios.request({
-    url: 'https://filmedin.herokuapp.com/signup',
+    url: 'http://localhost:5000/signup',
     method: 'POST',
     data: data
   });
@@ -52,7 +52,7 @@ helpers.searchFilm = function(search) {
 }
 helpers.addFriend = function(friendID) {
   return axios.request({
-    url: 'https://filmedin.herokuapp.com/friend',
+    url: 'http://localhost:5000/friend',
     method: 'POST',
     headers: {
       'x-access-token': window.localStorage.getItem('filmedInToken'),
@@ -65,7 +65,7 @@ helpers.addFriend = function(friendID) {
 }
 helpers.addRating = function(filmID, rating, review) {
   return axios.request({
-    url: 'https://filmedin.herokuapp.com/rating',
+    url: 'http://localhost:5000/rating',
     method: 'POST',
     headers: {
       'x-access-token': window.localStorage.getItem('filmedInToken'),

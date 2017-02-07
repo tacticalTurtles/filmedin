@@ -91,7 +91,6 @@ class SignUp extends React.Component {
 			this.props.handleLogInClick(this.state.username);
 			}).catch(err => {
 				this.setState({loginMsg:'invalid-login'});
-				console.log('error with login', err)
 			})
 	}
 
@@ -110,7 +109,7 @@ class SignUp extends React.Component {
 	    window.localStorage.setItem('filmedInToken', response.data.token)
 	    this.props.handleLogInClick(this.state.username);
   	}).catch(err => {
-  		console.log('error with signup')
+  		console.log('error with signup: ', err);
   	})
 	}
 	loginKeyPress() {
