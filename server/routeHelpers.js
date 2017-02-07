@@ -141,7 +141,6 @@ module.exports = {
               source = movie.purchase_web_sources.find(source => {return (source.source === 'itunes')});
               film.itunes = source ? source.link : '';
               film.genre = movie.genres.map(genre => genre.title).join(' ');
-              // console.log(film);
               db.film.post(film, (err, rows) => {
                 if (err) {
                   console.log('film -> film.post', err);

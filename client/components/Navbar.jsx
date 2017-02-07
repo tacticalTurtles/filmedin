@@ -16,7 +16,6 @@ class FilmedInNavBar extends React.Component{
 		this.setState({filmSearch: e.target.value});
 	}
 	searchFilm() {
-    console.log('test');
 		helpers.searchFilm(this.state.filmSearch).then(films => {
 			console.log(films);
       this.props.searchFilm(films.data);
@@ -26,7 +25,7 @@ class FilmedInNavBar extends React.Component{
     }).catch(err => {
       console.log('error with search film', err)
     })
-		
+
 	}
 	searchUser() {
 		helpers.searchProfile(this.state.userSearch).then(friends => {
@@ -38,7 +37,7 @@ class FilmedInNavBar extends React.Component{
     }).catch(err => {
       console.log('error with search user', err)
     })
-		
+
 	}
   searchFilmKeyPress (e) {
     if (e.key === 'Enter') {
@@ -69,14 +68,14 @@ class FilmedInNavBar extends React.Component{
                     <span onClick={this.searchUser.bind(this)} className="glyphicon glyphicon-search"></span>
                   </div>
                   <div onClick={this.props.handleLogOutClick} className="nav-bar-button nav-bar-logout nav-bar-hover">Logout</div>
-                  
-                  
+
+
               </div>
           </div>
           <img src="/assets/logo.png" className="logo-home" />
         </div>
 
-        
+
 
       )
 	}
