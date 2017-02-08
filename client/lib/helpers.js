@@ -44,6 +44,11 @@ helpers.getFilm = function(id) {
   return axios.request(getRequest('/film/' + id));
 }
 
+helpers.getMovies = function() {
+  var url = 'http://data.tmsapi.com/v1.1/movies/showings?startDate=2017-02-08&zip=94030&imageSize=Sm&imageText=false&api_key=vah23z92k8mvpscqy7nrg44e'
+  return axios.request(getRequest(url))
+}
+
 helpers.searchProfile = function(search) {
   return axios.request(getRequest('/searchprofile/' + search));
 }

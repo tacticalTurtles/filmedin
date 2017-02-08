@@ -54,7 +54,7 @@ CREATE TABLE film (
   overview VARCHAR(1200) NULL,
   directors VARCHAR(255) NULL,
   writers VARCHAR(255) NULL,
-  actors VARCHAR(1200) NULL,
+  actors VARCHAR(5000) NULL,
   posterURL VARCHAR(511) NULL,
   runtime VARCHAR(50) NULL,
   genre VARCHAR(255) NULL,
