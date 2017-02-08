@@ -11,6 +11,7 @@ import SearchUser from './SearchUser';
 import SearchFilm from './SearchFilm';
 import NavBar from './NavBar';
 import Forum from './Forum';
+import CreateTopic from './CreateTopic';
 
 class App extends React.Component {
   constructor(props) {
@@ -40,6 +41,7 @@ class App extends React.Component {
     this.addFriend = this.addFriend.bind(this);
     this.rateFilm = this.rateFilm.bind(this);
     this.handleForumClick = this.handleForumClick.bind(this);
+    this.handleCreateTopicClick = this.handleCreateTopicClick.bind(this);
   }
   componentWillMount () {
     this.getTopics();
@@ -49,21 +51,19 @@ class App extends React.Component {
     }
   }
 
-  componentDidMount() {
-    
-  }
-
   addFriend(friend) {
     helpers.addFriend(friend.id).then(res => {
       this.handleHomeClick();
     });
   }
+
   handleSearchUserClick(searchUser) {
     this.setState({
       searchUser: searchUser,
       view: 'showSearchUserView'
     })
   }
+
   rateFilm(rating, filmid) {
 
     helpers.addRating(filmid, rating, '').then(response => {
@@ -82,6 +82,18 @@ class App extends React.Component {
       .catch(err => {
         console.log('ERROR: ', err);
       });
+  }
+
+  handleCreateTopicClick() {
+    this.setState({
+      view: 'showCreateTopicView'
+    })
+  }
+
+  handleCreateMessageClick() {
+    this.setState({
+      view: 'showCreateMessageView'
+    })
   }
 
   handleSearchFilmClick(searchFilm) {
@@ -209,9 +221,16 @@ class App extends React.Component {
                 />
             ) : (this.state.view === 'showForumView') ? (
                 <Forum 
-                  username={this.state.username}
-                  userID={this.state.userID}
                   topics={this.state.topics}
+                  handleCreateTopicClick={this.handleCreateTopicClick}
+                />
+            ) : (this.state.view === 'showCreateTopicView') ? (
+                <CreateTopic 
+                  
+                />
+            ) : (this.state.view === 'showCreateMessageView') ? (
+                <CreateMessage 
+
                 />
             ) : (
                 <SearchUser
