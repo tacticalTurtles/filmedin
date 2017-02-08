@@ -4,8 +4,9 @@ import UserEntry from './UserEntry';
 
 var UserList = ({handleUserClick, allFriends}) => (
 	<div className="user-list">
-		{allFriends.map(user => 
+		{allFriends.map((user, i) => 
 			<UserEntry 
+        key={i}
 				handleUserClick={handleUserClick}
 				user={user} 
 			/> )}
