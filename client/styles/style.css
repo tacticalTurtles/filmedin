@@ -3,11 +3,14 @@
 	width: 100%;
 }
 
+body {
+		font-family: 'Roboto', sans-serif;
+}
+
 .carouselClass {
 	background-color: #6e9be5;
 	width: 100%;
 	height: 300px;
-	text-decoration-color: yellow;
 	padding: 30px;
 }
 
@@ -742,16 +745,21 @@ margin-left: 50px;
 
 .carousel-title {
 	text-align: center;
-	border:
+	line-height: 53px;
+	font-family: 'Contrail One', cursive;
 }
 
 .carousel-description {
 	font-style: italic;
-
+	font-family: 'Handlee', cursive;
 }
 
 .carousel-title-box {
-	border: 3px solid;
-	border-radius: 5px;
-	border-color: white;
+	background-image: url('../assets/marquee.png');
+	width: 506px;
+	height: 106px;
+}
+
+.carousel-showtimes-title {
+	text-align: center;
 }
