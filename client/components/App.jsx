@@ -25,7 +25,9 @@ class App extends React.Component {
       feed: [],
       searchUser: [],
       searchFilm: [],
-      username: ''
+      username: '',
+      userID: null,
+      topics: []
     }
 
     this.handleSearchUserClick = this.handleSearchUserClick.bind(this);
@@ -40,11 +42,17 @@ class App extends React.Component {
     this.handleForumClick = this.handleForumClick.bind(this);
   }
   componentWillMount () {
+    this.getTopics();
     if (window.localStorage.getItem('filmedInToken')) {
       this.setState({isLoggedIn:true});
       this.handleHomeClick();
     }
   }
+
+  componentDidMount() {
+    
+  }
+
   addFriend(friend) {
     helpers.addFriend(friend.id).then(res => {
       this.handleHomeClick();
@@ -62,6 +70,20 @@ class App extends React.Component {
       console.log('rated');
     })
   }
+
+  getTopics() {
+    helpers.getTopics()
+      .then(resp => {
+        this.setState({
+          topics: resp.data
+        });
+        console.log('this.state.topics === ', this.state.topics);
+      })
+      .catch(err => {
+        console.log('ERROR: ', err);
+      });
+  }
+
   handleSearchFilmClick(searchFilm) {
     this.setState({
       searchFilm: searchFilm,
@@ -88,6 +110,16 @@ class App extends React.Component {
     this.setState({
       username: username
     });
+    helpers.getUserIdByName(username)
+      .then(resp => {
+        const userID = Number(resp.data[0].id)
+        this.setState({
+          userID: userID
+        })
+      })
+      .catch(err => {
+        console.log('error clientside', err);
+      })
   }
 
 
@@ -178,6 +210,8 @@ class App extends React.Component {
             ) : (this.state.view === 'showForumView') ? (
                 <Forum 
                   username={this.state.username}
+                  userID={this.state.userID}
+                  topics={this.state.topics}
                 />
             ) : (
                 <SearchUser
