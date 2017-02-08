@@ -10,6 +10,7 @@ import helpers from '../lib/helpers';
 import SearchUser from './SearchUser';
 import SearchFilm from './SearchFilm';
 import NavBar from './NavBar';
+import Forum from './Forum';
 
 class App extends React.Component {
   constructor(props) {
@@ -23,7 +24,8 @@ class App extends React.Component {
       view: '',
       feed: [],
       searchUser: [],
-      searchFilm: []
+      searchFilm: [],
+      username: ''
     }
 
     this.handleSearchUserClick = this.handleSearchUserClick.bind(this);
@@ -35,6 +37,7 @@ class App extends React.Component {
     this.handleLogOutClick = this.handleLogOutClick.bind(this);
     this.addFriend = this.addFriend.bind(this);
     this.rateFilm = this.rateFilm.bind(this);
+    this.handleForumClick = this.handleForumClick.bind(this);
   }
   componentWillMount () {
     if (window.localStorage.getItem('filmedInToken')) {
@@ -66,6 +69,11 @@ class App extends React.Component {
     })
   }
 
+  handleForumClick() {
+    this.setState({
+      view: 'showForumView'
+    })
+  }
 
   handleLogOutClick() {
     window.localStorage.removeItem('filmedInToken');
@@ -77,6 +85,9 @@ class App extends React.Component {
 
   handleLogInClick(username) {
     this.handleHomeClick();
+    this.setState({
+      username: username
+    });
   }
 
 
@@ -119,6 +130,7 @@ class App extends React.Component {
   }
 
   render() {
+    console.log('username', this.state.username);
 	  if (!this.state.isLoggedIn) {
       return (
         <SignUp
@@ -133,6 +145,7 @@ class App extends React.Component {
             handleLogOutClick={this.handleLogOutClick}
             searchUser={this.handleSearchUserClick}
             searchFilm={this.handleSearchFilmClick}
+            handleForumClick={this.handleForumClick}
           />
           <div className="bodyContent">
           {
@@ -161,6 +174,10 @@ class App extends React.Component {
                 <SearchFilm
                   search={this.state.searchFilm}
                   handleFilmClick={this.handleFilmClick}
+                />
+            ) : (this.state.view === 'showForumView') ? (
+                <Forum 
+                  username={this.state.username}
                 />
             ) : (
                 <SearchUser
