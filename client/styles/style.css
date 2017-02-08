@@ -2,6 +2,15 @@
 	/*width: 800px;*/
 	width: 100%;
 }
+
+.carouselClass {
+	background-color: #6e9be5;
+	width: 100%;
+	height: 300px;
+	text-decoration-color: yellow;
+	padding: 30px;
+}
+
 .logo-home {
 	top:8px;
 	left:3px;
@@ -14,7 +23,7 @@
 	float: right;
 }
 .login-bar {
-	background-color: #563D7C;
+	background-color: #6e9be5;
 	z-index: -1;
 }
 .valid-login {
@@ -25,7 +34,7 @@
 	color: white;
 	font-size: 16px;
 	margin-right: 30px;
-	margin-top: 3px; 
+	margin-top: 3px;
 }
 .glyphicon-search:hover {
 	font-size: 22px;
@@ -80,14 +89,14 @@
 }
 .signup-form button {
 	width: 600px;
-	background-color: #563D7C;
+	background-color: #6e9be5;
 	color:white !important;
 	font-size: 32px;
 	text-align: center;
 	border-radius: 15px;
 }
 .signup-form button:hover {
-	background-color: #7a58ad;
+	background-color: #91b6f2;
 }
 .navbar {
 	display: inline-block;
@@ -130,7 +139,7 @@
 
 }
 .nav-bar-hover:hover {
-	background-color: #4a356b;
+	background-color: #91b6f2;
 
 }
 .nav-bar-right {
@@ -146,7 +155,7 @@
 }
 .nav-bar-button input {
 	font-size: 14px;
-	color: #563D7C;
+	color: #6e9be5;
 	border-radius: 5px;
 	padding-left: 5px;
 	border-color:black;
@@ -178,7 +187,7 @@
 .film-profile {
 	width: 70%;
 	margin-left: auto;
-	margin-right: auto; 
+	margin-right: auto;
 
 }
 .genre {
@@ -196,8 +205,8 @@
 	/*border-style: solid;*/
 	padding: 10px 10px 10px 10px;
 	/*border-radius: 5px;*/
-	/*background-color: #a38bc6;*/
-	color:#563d7c;
+	/*background-color: #91b6f2;*/
+	color:#6e9be5;
 }
 .my-modal {
 	width: 44vw;
@@ -307,12 +316,12 @@
 	/*float: right;*/
 	display: inline-block;
 	height: 337px;
-		border-color: black;
+	border-color: black;
 	border-style: solid;
 	border-width: 2px;
 	border-radius: 2px;
 	padding: 5px;
-		border-color: #D2C8D8;
+	border-color: #D2C8D8;
 	background-color: #f7f5f8;
 }
 .user-home-right-panel {
@@ -327,12 +336,12 @@
 	/*float: right;*/
 	display: inline-block;
 	height: 308px;
-		border-color: black;
+	border-color: black;
 	border-style: solid;
 	border-width: 2px;
 	border-radius: 2px;
 	padding: 5px;
-		border-color: #D2C8D8;
+	border-color: #D2C8D8;
 	background-color: #f7f5f8;
 	overflow: auto;
 }
@@ -353,7 +362,7 @@
 	height: 370px;
 }
 .trailer-button {
-	background-color: #563d7c;
+	background-color: #6e9be5;
 	position: absolute;
 	top: 510px;
 	left: 260px;
@@ -370,7 +379,7 @@
 .ratingBlock {
 	display: inline-block;
 	margin-left: 20px;
-	border-color: #563d7c;
+	border-color: #6e9be5;
 	border-style: solid;
 	vertical-align: top;
 	margin-top: 20px;
@@ -394,7 +403,7 @@
 	margin-top: 5px;
 }
 .ratingStar {
-		color:#563d7c;
+		color:#6e9be5;
 	/*margin-top: 10px;*/
 	/*padding-top: 20px;*/
 	/*vertical-align: middle;*/
@@ -454,8 +463,8 @@ margin-left: 50px;
 .film-entry {
 	border-style: solid;
 	border-width: 1px;
-	border-color: #563d7c;
-	border-radius: 5px; 
+	border-color: #6e9be5;
+	border-radius: 5px;
 	background-color: white;
 	margin: 15px 15px 15px 15px;
 	padding: 5px;
@@ -489,7 +498,7 @@ margin-left: 50px;
 .film-entry-genre {
 	color: grey;
 	font-size: 12px;
-	margin-left: 5px; 
+	margin-left: 5px;
 }
 .film-entry:hover {
 	background-color: lightgrey;
@@ -555,7 +564,7 @@ margin-left: 50px;
 	border-style: solid;
 	border-width: 1px;
 	border-radius: 5px;
-	border-color: #563D7C;
+	border-color: #6e9be5;
 	background-color: white;
 	margin: 10px;
 	padding: 10px;
@@ -573,9 +582,9 @@ margin-left: 50px;
 }
 .user-entry:hover {
 	background-color: lightgrey;
-	color:#563D7C;
+	color:#91b6f2;
 	cursor: pointer;
-	
+
 }
 .addFriend {
 	float:right;
@@ -586,16 +595,16 @@ margin-left: 50px;
 .addFriend-button {
 	border-radius: 10px;
 	background-color: white;
-	color:#563D7C;
+	color:#6e9be5;
 }
 .addFriend:hover {
-	color:#a38bc6;
+	color:#91b6f2;
 
 }
 .user-name {
 	font-size: 24px;
 	font-family: Roboto, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Open Sans", sans-serif;
-	color:#563D7C;
+	color:#6e9be5;
 }
 .user-name:hover {
 	color:white;
@@ -628,7 +637,7 @@ margin-left: 50px;
 	/*width: 1000px;*/
 }
 .search-film-entry:hover {
-	background-color:#a38bc6;
+	background-color:#91b6f2;
 	cursor: pointer;
 	color:white;
 }
@@ -659,8 +668,8 @@ margin-left: 50px;
 	background-color: white;
 	border-radius: 3px;
 	padding: 10px;
-	border-color: #563D7C;
-	margin: 10px; 
+	border-color: #6e9be5;
+	margin: 10px;
 
 }
 .feed-entry-info {
@@ -731,6 +740,18 @@ margin-left: 50px;
 	height: 18px;
 }
 
+.carousel-title {
+	text-align: center;
+	border:
+}
 
+.carousel-description {
+	font-style: italic;
 
+}
 
+.carousel-title-box {
+	border: 3px solid;
+	border-radius: 5px;
+	border-color: white;
+}
