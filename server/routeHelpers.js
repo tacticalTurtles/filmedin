@@ -145,7 +145,7 @@ module.exports = {
                 if (err) {
                   console.log('film -> film.post', err);
                 }
-                // film.id = rows.insertId;
+                film.id = rows.insertId;
                 film.friendRatings = [];
                 film.myRating = {};
                 res.send(JSON.stringify(film));
