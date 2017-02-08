@@ -96,4 +96,35 @@ helpers.dateDiff = function(date) {
   var mm = Math.floor(msec / 1000 / 60);
   return (dd !== 0 ? (dd + "d ") : "") + (hh !== 0 ? (hh + "h ") : "") + (mm !== 0 ? (mm + "m ") : "");
 }
+
+helpers.getUserIdByName = function(username) {
+  console.log('clientside helper iim in u', username);
+  return axios({
+    method: 'get',
+    url: 'http://localhost:5000/users',
+    params: {
+      username: username
+    }
+  });
+}
+
+helpers.getMessagesByTopicId = function(topicId) {
+  /* TODO */
+}
+
+helpers.getTopics = function () {
+  return axios({
+    method: 'get',
+    url: 'http://localhost:5000/topics'
+  });
+}
+
+helpers.postMessage = function() {
+  /* TODO */
+}
+
+helpers.postTopic = function() {
+  /* TODO */
+}
+
 export default helpers

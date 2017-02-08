@@ -71,6 +71,36 @@ CREATE TABLE film (
 );
 
 -- ---
+-- Table topic
+--
+-- ---
+DROP TABLE IF EXISTS topic;
+
+CREATE TABLE topic (
+  id INTEGER NOT NULL AUTO_INCREMENT,
+  topic VARCHAR(255) NOT NULL,
+  createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id)
+);
+
+-- ---
+-- Table message
+--
+-- ---
+DROP TABLE IF EXISTS message;
+
+CREATE TABLE message (
+  id INTEGER NOT NULL AUTO_INCREMENT,
+  userID INTEGER NOT NULL,
+  topicID INTEGER NOT NULL,
+  message VARCHAR(1200) NOT NULL,
+  createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id)
+);
+
+-- ---
 -- Table rating
 --
 -- ---
@@ -111,3 +141,5 @@ ALTER TABLE rating ADD FOREIGN KEY (profileID) REFERENCES profile (id);
 ALTER TABLE rating ADD FOREIGN KEY (filmID) REFERENCES film (id);
 ALTER TABLE friends ADD FOREIGN KEY (primaryID) REFERENCES profile (id);
 ALTER TABLE friends ADD FOREIGN KEY (friendID) REFERENCES profile (id);
+ALTER TABLE message ADD FOREIGN KEY (userID) REFERENCES user (id);
+ALTER TABLE message ADD FOREIGN KEY (topicID) REFERENCES topic (id);

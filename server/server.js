@@ -6,6 +6,8 @@ var app = express();
 var auth = require('./auth');
 var routeHelpers = require('./routeHelpers');
 var cors = require('cors');
+var userController = require('./userController');
+var forumController = require('./forumController');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -29,5 +31,8 @@ app.get('/film/:id', routeHelpers.film);
 app.get('/feed', routeHelpers.feed);
 app.get('/searchprofile/:id', routeHelpers.searchUser);
 app.get('/searchfilm/:id', routeHelpers.searchFilm);
+
+app.get('/users', userController.getUserIdByName);
+app.get('/topics', forumController.getTopics);
 
 module.exports = app;

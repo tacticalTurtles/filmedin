@@ -3,8 +3,9 @@ import FeedEntry from './FeedEntry';
 
 var FeedList = ({handleFilmClick, handleUserClick, feeds}) => (
   <div className="feed-list">
-    {feeds.map(feed =>
+    {feeds.map((feed, i) =>
       <FeedEntry
+        key={i}
         handleFilmClick={handleFilmClick}
         handleUserClick={handleUserClick}
         feed={feed}
