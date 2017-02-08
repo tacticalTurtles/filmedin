@@ -1,6 +1,5 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
-import NowplayingEntry from './NowplayingEntry.jsx';
 import testData from '../data/onConnect.js';
 import helpers from '../lib/helpers'
 
