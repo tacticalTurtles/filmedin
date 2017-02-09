@@ -1,21 +1,28 @@
 import React from 'react';
 import helpers from '../lib/helpers';
+import $ from 'jquery';
 
 class Forum extends React.Component {
   constructor (props) {
     super(props);
+    this.onClick = this.onClick.bind(this);
   }
 
-  handleCreateTopic() {
-
+  onClick() {
+    $('.topic').on('click', function(e) {
+      var topic = $(this).text();
+      console.log('topic', topic);
+    })
   }
+
+
 
   render() {
     const { topics } = this.props;
-    const forum = topics.map((topic, i) => {
+    const threads = topics.map((topic, i) => {
       return (
-        <tr key={i}>
-          <th>{topic.topic}</th>
+        <tr key={i} value={topic.topic}>
+          <th className="topic" onClick={this.onClick}>{topic.topic}</th>
           <th>{topic.createdAt}</th>
           <th>{topic.updatedAt}</th>
         </tr>
@@ -35,7 +42,7 @@ class Forum extends React.Component {
               <th>Created At</th>
               <th>Last Post</th>
             </tr>
-            { forum }
+            { threads }
           </tbody>
         </table>
       </div>
