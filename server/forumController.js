@@ -8,5 +8,13 @@ module.exports = {
       console.log('getTopics server data ==== ', data);
       res.json(data);
     })
+  },
+
+  postNewTopic: (req, res, next) => {
+    const { topicName } = req.body;
+    const queryStr = `insert into topic (topic) values ('${topicName}')`;
+    db.query(queryStr, (err, data) => {
+      res.json(data);
+    });
   }
 }
