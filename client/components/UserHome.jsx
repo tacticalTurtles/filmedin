@@ -26,7 +26,7 @@ var UserHome = ({handleFilmClick, handleUserClick, profile, username, feed}) => 
 				handleFilmClick={handleFilmClick}
 				allFilms={profile.ratings}
 			/>
-			<span className="user-home-recs-title">Recommended for you</span>
+			<div className="filmStatus">Recommended for you</div>
 			<FilmList
 				handleFilmClick={handleFilmClick}
 				allFilms={_.uniq(profile.recs, rec => rec.filmID)}
