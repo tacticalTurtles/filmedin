@@ -14,5 +14,16 @@ module.exports = {
     db.query(queryStr, (err, data) => {
       res.json(data);
     });
+<<<<<<< HEAD
+=======
+  },
+  getMessagesByTitle: (req, res, next) => {
+    var { title } = req.query;
+    title = title.replace(/\+/gi, ' ');
+    const queryStr = `select distinct user.username, message.message, message.createdAt, message.updatedAt, message.topicID from topic inner join message on message.topicID = (select id from topic where topic.topic = '${title}') inner join user where message.userID = user.id`;
+    db.query(queryStr, (err, data) => {
+      res.json(data);
+    });
+>>>>>>> 3f3ec6108190bbda5528ae7c9581c97f1e9f3078
   }
 }

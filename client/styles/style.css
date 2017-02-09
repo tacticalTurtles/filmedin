@@ -3,9 +3,9 @@
 	width: 100%;
 }
 
-@font-face { 
-	font-family: ShowTIme; 
-	src: url('../assets/Showtime.ttf'); 
+@font-face {
+	font-family: ShowTIme;
+	src: url('../assets/Showtime.ttf');
 }
 
 body {
@@ -714,6 +714,12 @@ margin-left: 50px;
 	float: left;
 	height: 625px;
 }
+.user-right-panel {
+	float: right;
+	height: 625px;
+	padding-right: 80px;
+}
+
 .user-profile-films {
 	/*float: right;*/
 	/*height: 625px;*/

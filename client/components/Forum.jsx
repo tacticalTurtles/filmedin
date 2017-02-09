@@ -9,10 +9,25 @@ class Forum extends React.Component {
   }
 
   onClick() {
+<<<<<<< HEAD
     $('.topic').on('click', function(e) {
       var topic = $(this).text();
       console.log('topic', topic); 
     })
+=======
+    var context = this;
+    $('.topic').on('click', function(e) {
+      var topicTitle = $(this).text();
+      helpers.getMessagesByTopicTitle(topicTitle)
+        .then(resp => {
+          console.log('resp.data === ', resp.data);
+          context.props.handleTopicClick(resp.data);
+        })
+        .catch(err => {
+          console.log('ERROR: ', err);
+        });
+    });
+>>>>>>> 3f3ec6108190bbda5528ae7c9581c97f1e9f3078
   }
 
 

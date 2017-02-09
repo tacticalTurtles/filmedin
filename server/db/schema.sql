@@ -1,10 +1,10 @@
--- USE heroku_a82769b4f508eba;
 
--- DROP DATABASE IF EXISTS filmedin;
+DROP DATABASE IF EXISTS filmedin;
 
--- CREATE DATABASE filmedin;
+CREATE DATABASE filmedin;
 
-USE heroku_52b4a7557cf5bb8;
+USE filmedin;
+-- USE heroku_52b4a7557cf5bb8;
 
 DROP TABLE IF EXISTS rating;
 DROP TABLE IF EXISTS friends;
@@ -36,6 +36,7 @@ CREATE TABLE profile (
   profileURL VARCHAR(255) NULL,
   DOB DATE NULL,
   createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  preferredGenre VARCHAR(50),
   PRIMARY KEY (id)
 );
 

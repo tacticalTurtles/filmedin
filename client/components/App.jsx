@@ -11,7 +11,10 @@ import SearchUser from './SearchUser';
 import SearchFilm from './SearchFilm';
 import NavBar from './NavBar';
 import Forum from './Forum';
+import Profile from './Profile';
 import CreateTopic from './CreateTopic';
+import Thread from './Thread';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -29,7 +32,12 @@ class App extends React.Component {
       username: '',
       userID: null,
       topics: [],
+<<<<<<< HEAD
       currentTopicID: null
+=======
+      currentTopicID: null,
+      topicMessages: []
+>>>>>>> 3f3ec6108190bbda5528ae7c9581c97f1e9f3078
     }
 
     this.handleSearchUserClick = this.handleSearchUserClick.bind(this);
@@ -42,8 +50,13 @@ class App extends React.Component {
     this.addFriend = this.addFriend.bind(this);
     this.rateFilm = this.rateFilm.bind(this);
     this.handleForumClick = this.handleForumClick.bind(this);
+    this.handleProfileClick = this.handleProfileClick.bind(this);
     this.handleCreateTopicClick = this.handleCreateTopicClick.bind(this);
     this.handleTopicClick = this.handleTopicClick.bind(this);
+<<<<<<< HEAD
+=======
+    this.handleDropDownSelect = this.handleDropDownSelect.bind(this);
+>>>>>>> 3f3ec6108190bbda5528ae7c9581c97f1e9f3078
 
   }
   componentWillMount () {
@@ -111,8 +124,29 @@ class App extends React.Component {
     })
   }
 
+<<<<<<< HEAD
   handleTopicClick(e) {
     console.log(e);
+=======
+  handleProfileClick() {
+    helpers.getProfile((this.state.profile.userID)).then(response => {
+      response.data.friends = response.data.friends.filter(friend => (friend.ID !== 0))
+      response.data.isFriend = this.state.profile.friends.map(friend => friend.ID).includes(this.state.profile.userID);
+      console.log(response.data);
+      this.setState({
+        view: 'showProfileView',
+        clickedUser: response.data
+      });
+    });
+  }
+
+  handleTopicClick(data) {
+    this.setState({
+      topicMessages: data,
+      view: 'showThreadView'
+    });
+    console.log('Current Messages for Thread View === ', this.state.topicMessages);
+>>>>>>> 3f3ec6108190bbda5528ae7c9581c97f1e9f3078
   }
 
   handleLogOutClick() {
@@ -123,6 +157,11 @@ class App extends React.Component {
     })
   }
 
+  handleDropDownSelect(category) {
+    helpers.setFavoriteGenre(category, this.state.profile.id).then( () => {
+      window.alert('set genre as: ' + category)
+    })
+  }
   handleLogInClick(username) {
     this.handleHomeClick();
     this.setState({
@@ -195,6 +234,7 @@ class App extends React.Component {
             searchUser={this.handleSearchUserClick}
             searchFilm={this.handleSearchFilmClick}
             handleForumClick={this.handleForumClick}
+            handleProfileClick={this.handleProfileClick}
           />
           <div className="bodyContent">
           {
@@ -229,6 +269,17 @@ class App extends React.Component {
                   topics={this.state.topics}
                   handleCreateTopicClick={this.handleCreateTopicClick}
                   handleTopicClick={this.handleTopicClick}
+<<<<<<< HEAD
+=======
+                />
+            ) : (this.state.view === 'showProfileView') ? (
+                <Profile
+                  handleFilmClick={this.handleFilmClick}
+                  handleUserClick={this.handleUserClick}
+                  user={this.state.clickedUser}
+                  handleDropDownSelect={this.handleDropDownSelect}
+                  addFriend={this.addFriend}
+>>>>>>> 3f3ec6108190bbda5528ae7c9581c97f1e9f3078
                 />
             ) : (this.state.view === 'showCreateTopicView') ? (
                 <CreateTopic
@@ -237,6 +288,11 @@ class App extends React.Component {
             ) : (this.state.view === 'showCreateMessageView') ? (
                 <CreateMessage
 
+                />
+            ) : (this.state.view === 'showThreadView') ? (
+                <Thread
+                  messages={this.state.topicMessages}
+                  userID={this.state.userID}
                 />
             ) : (
                 <SearchUser
