@@ -9,7 +9,7 @@ var getRequest = function (url) {
 
     },
     url: url,
-    baseURL: 'http://localhost:5000/',
+    baseURL: 'http://filmedinjs.herokuapp.com/',
     method: 'GET'
   }
   return request;
@@ -19,14 +19,14 @@ var helpers = {};
 
 helpers.logInUser = function(data) {
   return axios.request({
-    url: 'http://localhost:5000/signin',
+    url: 'http://filmedinjs.herokuapp.com/signin',
     method: 'POST',
     data: data
   });
 }
 helpers.signUpUser = function(data) {
   return axios.request({
-    url: 'http://localhost:5000/signup',
+    url: 'http://filmedinjs.herokuapp.com/signup',
     method: 'POST',
     data: data
   });
@@ -57,7 +57,7 @@ helpers.searchFilm = function(search) {
 }
 helpers.addFriend = function(friendID) {
   return axios.request({
-    url: 'http://localhost:5000/friend',
+    url: 'http://filmedinjs.herokuapp.com/friend',
     method: 'POST',
     headers: {
       'x-access-token': window.localStorage.getItem('filmedInToken'),
@@ -70,7 +70,7 @@ helpers.addFriend = function(friendID) {
 }
 helpers.addRating = function(filmID, rating, review) {
   return axios.request({
-    url: 'http://localhost:5000/rating',
+    url: 'http://filmedinjs.herokuapp.com/rating',
     method: 'POST',
     headers: {
       'x-access-token': window.localStorage.getItem('filmedInToken'),
@@ -105,7 +105,7 @@ helpers.dateDiff = function(date) {
 helpers.getUserIdByName = function(username) {
   return axios({
     method: 'get',
-    url: 'http://localhost:5000/users',
+    url: 'http://filmedinjs.herokuapp.com/users',
     params: {
       username: username
     }
@@ -119,7 +119,7 @@ helpers.getMessagesByTopicId = function(topicId) {
 helpers.getTopics = function () {
   return axios({
     method: 'get',
-    url: 'http://localhost:5000/topics'
+    url: 'http://filmedinjs.herokuapp.com/topics'
   });
 }
 
