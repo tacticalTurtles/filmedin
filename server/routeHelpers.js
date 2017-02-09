@@ -288,5 +288,13 @@ module.exports = {
         next(new Error('Invalid credentials'));
       }
     });
+  },
+
+  updatePreferredGenre: (req, res, next) => {
+    const {category, id} = req.body;
+    db.profile.updatePreferredGenre(category, id, (err, rows) => {
+      console.error(err);
+      res.send();
+    })
   }
 }
