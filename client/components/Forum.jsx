@@ -9,12 +9,6 @@ class Forum extends React.Component {
   }
 
   onClick() {
-<<<<<<< HEAD
-    $('.topic').on('click', function(e) {
-      var topic = $(this).text();
-      console.log('topic', topic); 
-    })
-=======
     var context = this;
     $('.topic').on('click', function(e) {
       var topicTitle = $(this).text();
@@ -27,7 +21,6 @@ class Forum extends React.Component {
           console.log('ERROR: ', err);
         });
     });
->>>>>>> 3f3ec6108190bbda5528ae7c9581c97f1e9f3078
   }
 
 

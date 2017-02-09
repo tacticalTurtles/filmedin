@@ -123,7 +123,6 @@ helpers.getTopics = function () {
   });
 }
 
-<<<<<<< HEAD
 helpers.postMessage = function(topicID, topicMessage, userID) {
   return axios.request({
   url: 'http://localhost:5000/postMessage',
@@ -136,37 +135,20 @@ helpers.postMessage = function(topicID, topicMessage, userID) {
       topicID: topicID,
       topicMessage: topicMessage,
       userID: userID
-=======
+    }
+  });
+}
+
 helpers.setFavoriteGenre = (category, id) => {
   return axios.request({
     url: 'http://localhost:5000/setFavoriteGenre',
     data: {
       category: category,
       id: id
->>>>>>> 3f3ec6108190bbda5528ae7c9581c97f1e9f3078
     }
   });
 }
 
-<<<<<<< HEAD
-=======
-helpers.postMessage = function(topicID, topicMessage, userID) {
-  return axios.request({
-  url: 'http://localhost:5000/postMessage',
-    method: 'POST',
-    headers: {
-      'x-access-token': window.localStorage.getItem('filmedInToken'),
-      'Content-Type': 'application/json; charset=utf-8',
-    },
-    data: {
-      topicID: topicID,
-      topicMessage: topicMessage,
-      userID: userID
-    }
-  });
-}
-
->>>>>>> 3f3ec6108190bbda5528ae7c9581c97f1e9f3078
 helpers.postNewTopic = function(topicName) {
   return axios.request({
   url: 'http://localhost:5000/postTopic',
@@ -179,8 +161,6 @@ helpers.postNewTopic = function(topicName) {
       topicName: topicName
     }
   });
-<<<<<<< HEAD
-=======
 }
 
 helpers.getMessagesByTopicTitle = function(title) {
@@ -195,7 +175,6 @@ helpers.getMessagesByTopicTitle = function(title) {
       title: title
     }
   });
->>>>>>> 3f3ec6108190bbda5528ae7c9581c97f1e9f3078
 }
 
 export default helpers

@@ -32,12 +32,9 @@ class App extends React.Component {
       username: '',
       userID: null,
       topics: [],
-<<<<<<< HEAD
-      currentTopicID: null
-=======
       currentTopicID: null,
       topicMessages: []
->>>>>>> 3f3ec6108190bbda5528ae7c9581c97f1e9f3078
+
     }
 
     this.handleSearchUserClick = this.handleSearchUserClick.bind(this);
@@ -53,10 +50,7 @@ class App extends React.Component {
     this.handleProfileClick = this.handleProfileClick.bind(this);
     this.handleCreateTopicClick = this.handleCreateTopicClick.bind(this);
     this.handleTopicClick = this.handleTopicClick.bind(this);
-<<<<<<< HEAD
-=======
     this.handleDropDownSelect = this.handleDropDownSelect.bind(this);
->>>>>>> 3f3ec6108190bbda5528ae7c9581c97f1e9f3078
 
   }
   componentWillMount () {
@@ -269,8 +263,6 @@ class App extends React.Component {
                   topics={this.state.topics}
                   handleCreateTopicClick={this.handleCreateTopicClick}
                   handleTopicClick={this.handleTopicClick}
-<<<<<<< HEAD
-=======
                 />
             ) : (this.state.view === 'showProfileView') ? (
                 <Profile
@@ -279,7 +271,6 @@ class App extends React.Component {
                   user={this.state.clickedUser}
                   handleDropDownSelect={this.handleDropDownSelect}
                   addFriend={this.addFriend}
->>>>>>> 3f3ec6108190bbda5528ae7c9581c97f1e9f3078
                 />
             ) : (this.state.view === 'showCreateTopicView') ? (
                 <CreateTopic

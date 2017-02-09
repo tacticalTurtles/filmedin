@@ -14,8 +14,6 @@ module.exports = {
     db.query(queryStr, (err, data) => {
       res.json(data);
     });
-<<<<<<< HEAD
-=======
   },
   getMessagesByTitle: (req, res, next) => {
     var { title } = req.query;
@@ -24,6 +22,5 @@ module.exports = {
     db.query(queryStr, (err, data) => {
       res.json(data);
     });
->>>>>>> 3f3ec6108190bbda5528ae7c9581c97f1e9f3078
   }
 }

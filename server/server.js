@@ -38,11 +38,8 @@ app.get('/topics', forumController.getTopics);
 app.get('/messagesByTopicID', messageController.getMessagesByTopicID);
 app.post('/postTopic', forumController.postNewTopic);
 app.post('/postMessage', messageController.postNewMessage);
-<<<<<<< HEAD
-=======
 app.post('/setFavoriteGenre', routeHelpers.updatePreferredGenre);
 app.get('/getMessagesByTitle', messageController.getMessagesByTitle);
->>>>>>> 3f3ec6108190bbda5528ae7c9581c97f1e9f3078
 
 
 module.exports = app;
