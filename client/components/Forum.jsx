@@ -11,7 +11,7 @@ class Forum extends React.Component {
   onClick() {
     $('.topic').on('click', function(e) {
       var topic = $(this).text();
-      console.log('topic', topic);
+      console.log('topic', topic); 
     })
   }
 
