@@ -32,6 +32,8 @@ class TextFieldGroup extends React.Component {
           .then(resp => {
             console.log('Message Posted');
             // TO DO: Redirect to Forum or the Same Thread (with new posts)
+            this.props.update();
+            this.props.handleCreateTopicSubmit();
           });
       })
       .catch(err => {
