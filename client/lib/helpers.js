@@ -139,6 +139,7 @@ helpers.postMessage = function(topicID, topicMessage, userID) {
   });
 }
 
+
 helpers.postNewTopic = function(topicName) {
   return axios.request({
   url: 'http://localhost:5000/postTopic',
@@ -149,6 +150,20 @@ helpers.postNewTopic = function(topicName) {
     },
     data: {
       topicName: topicName
+    }
+  });
+}
+
+helpers.getMessagesByTopicTitle = function(title) {
+  return axios.request({
+    url: 'http://localhost:5000/getMessagesByTitle',
+    method: 'GET',
+    headers: {
+      'x-access-token': window.localStorage.getItem('filmedInToken'),
+      'Content-Type': 'application/json; charset=utf-8',
+    },
+    params: {
+      title: title
     }
   });
 }
