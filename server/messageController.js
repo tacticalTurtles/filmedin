@@ -1,12 +1,5 @@
 var db = require('./db/db');
 
-const queryStr = `select t.id, m.message from topic t
-                    where t.id = 1
-                    inner join message m on m.topicID = 1`;
-db.query(queryStr, (err, data) => {
-  console.log(data);
-})
-
 module.exports = {
   postNewMessage: (req, res, next) => {
     const { topicID, topicMessage, userID } = req.body;
