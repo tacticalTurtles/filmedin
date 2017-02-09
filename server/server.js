@@ -38,6 +38,7 @@ app.get('/topics', forumController.getTopics);
 app.get('/messagesByTopicID', messageController.getMessagesByTopicID);
 app.post('/postTopic', forumController.postNewTopic);
 app.post('/postMessage', messageController.postNewMessage);
+app.post('/setFavoriteGenre', routeHelpers.updatePreferredGenre);
 
 
 module.exports = app;
