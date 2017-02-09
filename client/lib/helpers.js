@@ -126,11 +126,6 @@ helpers.getTopics = function () {
 helpers.setFavoriteGenre = (category, id) => {
   return axios.request({
     url: 'http://localhost:5000/setFavoriteGenre',
-    method: 'POST',
-    headers: {
-      'x-access-token': window.localStorage.getItem('filmedInToken'),
-      'Content-Type': 'application/json; charset=utf-8',
-    },
     data: {
       category: category,
       id: id
@@ -156,7 +151,7 @@ helpers.postMessage = function(topicID, topicMessage, userID) {
 
 helpers.postNewTopic = function(topicName) {
   return axios.request({
-    url: 'http://localhost:5000/postTopic',
+  url: 'http://localhost:5000/postTopic',
     method: 'POST',
     headers: {
       'x-access-token': window.localStorage.getItem('filmedInToken'),
@@ -164,6 +159,20 @@ helpers.postNewTopic = function(topicName) {
     },
     data: {
       topicName: topicName
+    }
+  });
+}
+
+helpers.getMessagesByTopicTitle = function(title) {
+  return axios.request({
+    url: 'http://localhost:5000/getMessagesByTitle',
+    method: 'GET',
+    headers: {
+      'x-access-token': window.localStorage.getItem('filmedInToken'),
+      'Content-Type': 'application/json; charset=utf-8',
+    },
+    params: {
+      title: title
     }
   });
 }

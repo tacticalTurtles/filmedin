@@ -13,6 +13,8 @@ import NavBar from './NavBar';
 import Forum from './Forum';
 import Profile from './Profile';
 import CreateTopic from './CreateTopic';
+import Thread from './Thread';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -30,7 +32,8 @@ class App extends React.Component {
       username: '',
       userID: null,
       topics: [],
-      currentTopicID: null
+      currentTopicID: null,
+      topicMessages: []
     }
 
     this.handleSearchUserClick = this.handleSearchUserClick.bind(this);
@@ -126,8 +129,12 @@ class App extends React.Component {
     });
   }
 
-  handleTopicClick(e) {
-    console.log(e);
+  handleTopicClick(data) {
+    this.setState({
+      topicMessages: data,
+      view: 'showThreadView'
+    });
+    console.log('Current Messages for Thread View === ', this.state.topicMessages);
   }
 
   handleLogOutClick() {
@@ -266,6 +273,11 @@ class App extends React.Component {
             ) : (this.state.view === 'showCreateMessageView') ? (
                 <CreateMessage
 
+                />
+            ) : (this.state.view === 'showThreadView') ? (
+                <Thread
+                  messages={this.state.topicMessages}
+                  userID={this.state.userID}
                 />
             ) : (
                 <SearchUser
