@@ -50,6 +50,8 @@ class App extends React.Component {
     this.handleCreateTopicClick = this.handleCreateTopicClick.bind(this);
     this.handleTopicClick = this.handleTopicClick.bind(this);
     this.handleDropDownSelect = this.handleDropDownSelect.bind(this);
+    this.handleCreateTopicSubmit = this.handleCreateTopicSubmit.bind(this);
+    this.update = this.update.bind(this);
 
   }
   componentWillMount () {
@@ -58,6 +60,12 @@ class App extends React.Component {
       this.setState({isLoggedIn:true});
       this.handleHomeClick();
     }
+  }
+
+  update() {
+    console.log('are u updating');
+    this.getTopics();
+    this.forceUpdate();
   }
 
   addFriend(friend) {
@@ -95,6 +103,12 @@ class App extends React.Component {
   handleCreateTopicClick() {
     this.setState({
       view: 'showCreateTopicView'
+    })
+  }
+
+  handleCreateTopicSubmit() {
+    this.setState({
+      view: 'showForumView'
     })
   }
 
@@ -269,6 +283,8 @@ class App extends React.Component {
             ) : (this.state.view === 'showCreateTopicView') ? (
                 <CreateTopic
                   userID={this.state.userID}
+                  handleCreateTopicSubmit={this.handleCreateTopicSubmit}
+                  update={this.update}
                 />
             ) : (this.state.view === 'showCreateMessageView') ? (
                 <CreateMessage
