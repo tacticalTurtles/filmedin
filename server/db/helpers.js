@@ -26,6 +26,11 @@ var dbObj =  {
     },
     update: function(id, url, cb) {
       db.query(`UPDATE profile SET profileURL = ? WHERE id = ?`, [url, id], cb);
+    },
+    updatePreferredGenre: (category, id, cb) => {
+      console.log('category:', category);
+      console.log('id', id);
+      db.query('update profile SET preferredGenre = ? where id = ?', [category, id], cb);
     }
   },
   friend: {

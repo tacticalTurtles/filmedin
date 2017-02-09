@@ -45,7 +45,7 @@ helpers.getFilm = function(id) {
 }
 
 helpers.getMovies = function() {
-  var url = 'http://data.tmsapi.com/v1.1/movies/showings?startDate=2017-02-08&zip=94030&imageSize=Sm&imageText=false&api_key=vah23z92k8mvpscqy7nrg44e'
+  var url = 'http://data.tmsapi.com/v1.1/movies/showings?startDate=2017-02-08&zip=94030&imageSize=Sm&imageText=false&api_key=jpc43qej3q9yvtdy4urfh3rr'
   return axios.request(getRequest(url))
 }
 
@@ -123,6 +123,16 @@ helpers.getTopics = function () {
   });
 }
 
+helpers.setFavoriteGenre = (category, id) => {
+  return axios.request({
+    url: 'http://localhost:5000/setFavoriteGenre',
+    data: {
+      category: category,
+      id: id
+    }
+  });
+}
+
 helpers.postMessage = function(topicID, topicMessage, userID) {
   return axios.request({
   url: 'http://localhost:5000/postMessage',
@@ -138,7 +148,6 @@ helpers.postMessage = function(topicID, topicMessage, userID) {
     }
   });
 }
-
 
 helpers.postNewTopic = function(topicName) {
   return axios.request({
