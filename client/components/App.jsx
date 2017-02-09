@@ -29,7 +29,8 @@ class App extends React.Component {
       username: '',
       userID: null,
       topics: [],
-      currentTopicID: null
+      currentTopicID: null,
+      topicMessages: []
     }
 
     this.handleSearchUserClick = this.handleSearchUserClick.bind(this);
@@ -111,8 +112,12 @@ class App extends React.Component {
     })
   }
 
-  handleTopicClick(e) {
-    console.log(e);
+  handleTopicClick(data) {
+    this.setState({
+      topicMessages: data,
+      view: 'showThreadView'
+    });
+    console.log('this.state.topicMessages ==== ', this.state.topicMessages);
   }
 
   handleLogOutClick() {
