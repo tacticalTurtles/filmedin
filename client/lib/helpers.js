@@ -103,7 +103,6 @@ helpers.dateDiff = function(date) {
 }
 
 helpers.getUserIdByName = function(username) {
-  console.log('clientside helper iim in u', username);
   return axios({
     method: 'get',
     url: 'http://localhost:5000/users',
