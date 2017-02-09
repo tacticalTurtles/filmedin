@@ -3,6 +3,11 @@
 	width: 100%;
 }
 
+@font-face { 
+	font-family: ShowTIme; 
+	src: url('../assets/Showtime.ttf'); 
+}
+
 body {
 		font-family: 'Roboto', sans-serif;
 }
@@ -444,7 +449,7 @@ margin-left: 50px;
   /*display: inline-block;*/
 }
 .film-list{
-	height: 400px;
+	height: 200px;
 	overflow: auto;
 
 }
@@ -745,21 +750,20 @@ margin-left: 50px;
 
 .carousel-title {
 	text-align: center;
-	line-height: 53px;
-	font-family: 'Contrail One', cursive;
+	font-family: 'Showtime';
 }
 
 .carousel-description {
 	font-style: italic;
 	font-family: 'Handlee', cursive;
+	color: white;
 }
 
 .carousel-title-box {
-	background-image: url('../assets/marquee.png');
-	width: 506px;
-	height: 106px;
+	padding: 5px;
 }
 
 .carousel-showtimes-title {
 	text-align: center;
+	color: white;
 }
