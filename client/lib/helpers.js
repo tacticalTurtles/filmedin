@@ -129,7 +129,17 @@ helpers.postMessage = function() {
 }
 
 helpers.postTopic = function() {
-  /* TODO */
+  return axios.request({
+  url: 'http://localhost:5000/friend',
+    method: 'POST',
+    headers: {
+      'x-access-token': window.localStorage.getItem('filmedInToken'),
+      'Content-Type': 'application/json; charset=utf-8',
+    },
+    data: {
+      friendID: friendID
+    }
+  });
 }
 
 export default helpers
