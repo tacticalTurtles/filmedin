@@ -11,6 +11,7 @@ import SearchUser from './SearchUser';
 import SearchFilm from './SearchFilm';
 import NavBar from './NavBar';
 import Forum from './Forum';
+import Profile from './Profile';
 import CreateTopic from './CreateTopic';
 
 class App extends React.Component {
@@ -42,8 +43,10 @@ class App extends React.Component {
     this.addFriend = this.addFriend.bind(this);
     this.rateFilm = this.rateFilm.bind(this);
     this.handleForumClick = this.handleForumClick.bind(this);
+    this.handleProfileClick = this.handleProfileClick.bind(this);
     this.handleCreateTopicClick = this.handleCreateTopicClick.bind(this);
     this.handleTopicClick = this.handleTopicClick.bind(this);
+    this.handleDropDownSelect = this.handleDropDownSelect.bind(this);
 
   }
   componentWillMount () {
@@ -111,6 +114,18 @@ class App extends React.Component {
     })
   }
 
+  handleProfileClick() {
+    helpers.getProfile((this.state.profile.userID)).then(response => {
+      response.data.friends = response.data.friends.filter(friend => (friend.ID !== 0))
+      response.data.isFriend = this.state.profile.friends.map(friend => friend.ID).includes(this.state.profile.userID);
+      console.log(response.data);
+      this.setState({
+        view: 'showProfileView',
+        clickedUser: response.data
+      });
+    });
+  }
+
   handleTopicClick(e) {
     console.log(e);
   }
@@ -123,6 +138,11 @@ class App extends React.Component {
     })
   }
 
+  handleDropDownSelect(category) {
+    helpers.setFavoriteGenre(category, this.state.profile.id).then( () => {
+      window.alert('set genre as: ' + category)
+    })
+  }
   handleLogInClick(username) {
     this.handleHomeClick();
     this.setState({
@@ -195,6 +215,7 @@ class App extends React.Component {
             searchUser={this.handleSearchUserClick}
             searchFilm={this.handleSearchFilmClick}
             handleForumClick={this.handleForumClick}
+            handleProfileClick={this.handleProfileClick}
           />
           <div className="bodyContent">
           {
@@ -229,6 +250,14 @@ class App extends React.Component {
                   topics={this.state.topics}
                   handleCreateTopicClick={this.handleCreateTopicClick}
                   handleTopicClick={this.handleTopicClick}
+                />
+            ) : (this.state.view === 'showProfileView') ? (
+                <Profile
+                  handleFilmClick={this.handleFilmClick}
+                  handleUserClick={this.handleUserClick}
+                  user={this.state.clickedUser}
+                  handleDropDownSelect={this.handleDropDownSelect}
+                  addFriend={this.addFriend}
                 />
             ) : (this.state.view === 'showCreateTopicView') ? (
                 <CreateTopic
