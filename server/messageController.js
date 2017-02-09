@@ -7,5 +7,12 @@ module.exports = {
     db.query(queryStr, (err, data) => {
       res.json(data);
     });
+  },
+  getMessagesByTopicID: (req, res, next) => {
+    const { topicID } = req.query;
+    const queryStr = `select * from message where topicID = '${topicID}'`;
+    db.query(queryStr, (err, data) => {
+      res.json(data);
+    });
   }
 }

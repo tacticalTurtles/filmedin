@@ -44,8 +44,6 @@ class Forum extends React.Component {
 }
 
 Forum.propTypes = {
-  username: React.PropTypes.string.isRequired,
-  userID: React.PropTypes.number.isRequired,
   topics: React.PropTypes.array.isRequired,
   handleCreateTopicClick: React.PropTypes.func.isRequired
 }
