@@ -28,7 +28,8 @@ class App extends React.Component {
       searchFilm: [],
       username: '',
       userID: null,
-      topics: []
+      topics: [],
+      currentTopicID: null
     }
 
     this.handleSearchUserClick = this.handleSearchUserClick.bind(this);
@@ -42,6 +43,8 @@ class App extends React.Component {
     this.rateFilm = this.rateFilm.bind(this);
     this.handleForumClick = this.handleForumClick.bind(this);
     this.handleCreateTopicClick = this.handleCreateTopicClick.bind(this);
+    this.handleTopicClick = this.handleTopicClick.bind(this);
+
   }
   componentWillMount () {
     this.getTopics();
@@ -106,6 +109,10 @@ class App extends React.Component {
     this.setState({
       view: 'showForumView'
     })
+  }
+
+  handleTopicClick(e) {
+    console.log(e);
   }
 
   handleLogOutClick() {
@@ -221,7 +228,7 @@ class App extends React.Component {
                 <Forum
                   topics={this.state.topics}
                   handleCreateTopicClick={this.handleCreateTopicClick}
-
+                  handleTopicClick={this.handleTopicClick}
                 />
             ) : (this.state.view === 'showCreateTopicView') ? (
                 <CreateTopic
