@@ -9,7 +9,7 @@ var getRequest = function (url) {
 
     },
     url: url,
-    baseURL: 'http://localhost:5000/',
+    baseURL: 'http://filmedinjs.herokuapp.com/',
     method: 'GET'
   }
   return request;
@@ -19,14 +19,14 @@ var helpers = {};
 
 helpers.logInUser = function(data) {
   return axios.request({
-    url: 'http://localhost:5000/signin',
+    url: 'http://filmedinjs.herokuapp.com/signin',
     method: 'POST',
     data: data
   });
 }
 helpers.signUpUser = function(data) {
   return axios.request({
-    url: 'http://localhost:5000/signup',
+    url: 'http://filmedinjs.herokuapp.com/signup',
     method: 'POST',
     data: data
   });
@@ -44,6 +44,11 @@ helpers.getFilm = function(id) {
   return axios.request(getRequest('/film/' + id));
 }
 
+helpers.getMovies = function() {
+  var url = 'http://data.tmsapi.com/v1.1/movies/showings?startDate=2017-02-08&zip=94030&imageSize=Sm&imageText=false&api_key=vah23z92k8mvpscqy7nrg44e'
+  return axios.request(getRequest(url))
+}
+
 helpers.searchProfile = function(search) {
   return axios.request(getRequest('/searchprofile/' + search));
 }
@@ -52,7 +57,7 @@ helpers.searchFilm = function(search) {
 }
 helpers.addFriend = function(friendID) {
   return axios.request({
-    url: 'http://localhost:5000/friend',
+    url: 'http://filmedinjs.herokuapp.com/friend',
     method: 'POST',
     headers: {
       'x-access-token': window.localStorage.getItem('filmedInToken'),
@@ -65,7 +70,7 @@ helpers.addFriend = function(friendID) {
 }
 helpers.addRating = function(filmID, rating, review) {
   return axios.request({
-    url: 'http://localhost:5000/rating',
+    url: 'http://filmedinjs.herokuapp.com/rating',
     method: 'POST',
     headers: {
       'x-access-token': window.localStorage.getItem('filmedInToken'),
@@ -96,4 +101,35 @@ helpers.dateDiff = function(date) {
   var mm = Math.floor(msec / 1000 / 60);
   return (dd !== 0 ? (dd + "d ") : "") + (hh !== 0 ? (hh + "h ") : "") + (mm !== 0 ? (mm + "m ") : "");
 }
+
+helpers.getUserIdByName = function(username) {
+  console.log('clientside helper iim in u', username);
+  return axios({
+    method: 'get',
+    url: 'http://filmedinjs.herokuapp.com/users',
+    params: {
+      username: username
+    }
+  });
+}
+
+helpers.getMessagesByTopicId = function(topicId) {
+  /* TODO */
+}
+
+helpers.getTopics = function () {
+  return axios({
+    method: 'get',
+    url: 'http://filmedinjs.herokuapp.com/topics'
+  });
+}
+
+helpers.postMessage = function() {
+  /* TODO */
+}
+
+helpers.postTopic = function() {
+  /* TODO */
+}
+
 export default helpers
