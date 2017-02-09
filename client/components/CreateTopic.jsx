@@ -7,10 +7,13 @@ class CreateTopic extends React.Component {
   }
 
   render() {
+    const { handleCreateTopicSubmit, update } = this.props
     return (
       <div>
         <TextFieldGroup
           userID={this.props.userID}
+          handleCreateTopicSubmit={handleCreateTopicSubmit}
+          update={update}
         />
       </div>
     )
