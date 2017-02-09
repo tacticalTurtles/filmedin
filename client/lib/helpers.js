@@ -45,7 +45,7 @@ helpers.getFilm = function(id) {
 }
 
 helpers.getMovies = function() {
-  var url = 'http://data.tmsapi.com/v1.1/movies/showings?startDate=2017-02-08&zip=94030&imageSize=Sm&imageText=false&api_key=jpc43qej3q9yvtdy4urfh3rr'
+  var url = 'http://data.tmsapi.com/v1.1/movies/showings?startDate=2017-02-09&zip=94030&api_key=hrwx8yckjeehxpuxuy73qzqj'
   return axios.request(getRequest(url))
 }
 
