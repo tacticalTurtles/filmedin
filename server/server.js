@@ -8,6 +8,7 @@ var routeHelpers = require('./routeHelpers');
 var cors = require('cors');
 var userController = require('./userController');
 var forumController = require('./forumController');
+var messageController = require('./messageController');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -34,5 +35,7 @@ app.get('/searchfilm/:id', routeHelpers.searchFilm);
 
 app.get('/users', userController.getUserIdByName);
 app.get('/topics', forumController.getTopics);
+app.post('/postTopic', forumController.postNewTopic);
+app.post('/postMessage', messageController.postNewMessage);
 
 module.exports = app;

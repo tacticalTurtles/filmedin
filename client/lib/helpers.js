@@ -124,20 +124,32 @@ helpers.getTopics = function () {
   });
 }
 
-helpers.postMessage = function() {
-  /* TODO */
-}
-
-helpers.postTopic = function() {
+helpers.postMessage = function(topicID, topicMessage, userID) {
   return axios.request({
-  url: 'http://localhost:5000/friend',
+  url: 'http://localhost:5000/postMessage',
     method: 'POST',
     headers: {
       'x-access-token': window.localStorage.getItem('filmedInToken'),
       'Content-Type': 'application/json; charset=utf-8',
     },
     data: {
-      friendID: friendID
+      topicID: topicID,
+      topicMessage: topicMessage,
+      userID: userID
+    }
+  });
+}
+
+helpers.postNewTopic = function(topicName) {
+  return axios.request({
+  url: 'http://localhost:5000/postTopic',
+    method: 'POST',
+    headers: {
+      'x-access-token': window.localStorage.getItem('filmedInToken'),
+      'Content-Type': 'application/json; charset=utf-8',
+    },
+    data: {
+      topicName: topicName
     }
   });
 }
