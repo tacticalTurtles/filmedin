@@ -5,7 +5,6 @@ module.exports = {
     const { username } = req.query;
     const queryStr = `select id from user where username = '${username}'`;
     db.query(queryStr, (err, data) => {
-      console.log('server data', data);
       res.json(data);
     })
   }

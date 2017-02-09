@@ -11,12 +11,15 @@ class Thread extends React.Component {
       <div>
         {this.props.messages.map((message, i) => {
           return (
-            <div className="thread-post">
+            <div
+              key={i}
+              className="thread-post"
+            >
               <div className="thread-post-user-info">
-                {message.username}
+                <b>{message.username}</b>
               </div>
               <div className="thread-post-message">
-                {message.message}
+                <blockquote>{message.message}</blockquote>
               </div>
               <div className="thread-post-message-details">
                 {message.createdAt}
