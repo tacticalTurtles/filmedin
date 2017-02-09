@@ -12,9 +12,7 @@ class Forum extends React.Component {
 
   render() {
     const { topics } = this.props;
-    console.log('topics === ', topics);
     const forum = topics.map((topic, i) => {
-      console.log(topic)
       return (
         <tr key={i}>
           <th>{topic.topic}</th>

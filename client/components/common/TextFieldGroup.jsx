@@ -1,5 +1,5 @@
 import React from 'react';
-import helpers from '../lib/helpers';
+import helpers from '../../lib/helpers';
 
 class TextFieldGroup extends React.Component {
   constructor (props) {
@@ -10,6 +10,7 @@ class TextFieldGroup extends React.Component {
     };
 
     this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
 
@@ -19,13 +20,36 @@ class TextFieldGroup extends React.Component {
     });
   }
 
-  // postNewTopic() {
-  //   helpers.postTopic()
-  // }
+  postNewTopic(topicName, topicMessage, userID) {
+    helpers.postNewTopic(topicName)
+      .then(resp => {
+        const topicID = resp.data.insertId;
+        console.log('Response: ', resp);
+        return topicID;
+      })
+      .then(topicID => {
+        helpers.postMessage(topicID, topicMessage, userID)
+          .then(resp => {
+            console.log('Message Posted');
+            // TO DO: Redirect to Forum
+          });
+      })
+      .catch(err => {
+        console.log('ERROR: ', err);
+      })
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+    const { topicName, topicMessage } = this.state;
+    const { userID } = this.props;
+    this.postNewTopic(topicName, topicMessage, userID);
+  }
 
   render() {
     return (
       <div className='form-group'>
+        <form onSubmit={this.onSubmit}>
         <label className='control-label'>Topic Name</label>
         <input
           onChange={this.onChange}
@@ -42,10 +66,19 @@ class TextFieldGroup extends React.Component {
             name='topicMessage'
             className='form-control'
         />
-      <button className="btn btn-primary btn-lg btn-success">Submit</button>
+      <button
+        type="submit"
+        className="btn btn-primary btn-lg btn-success">
+        Submit
+      </button>
+      </form>
       </div>
     );
   }
+}
+
+TextFieldGroup.propTypes = {
+  userID: React.PropTypes.number.isRequired
 }
 
 

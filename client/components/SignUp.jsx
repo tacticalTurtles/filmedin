@@ -80,7 +80,9 @@ class SignUp extends React.Component {
 	}
 
 	handleLoginClick(event) {
-		event.preventDefault();
+		if (event !== undefined) {
+			event.preventDefault();
+		}
 		var signinInputs = {
 			username: this.state.username,
 			password: this.state.password

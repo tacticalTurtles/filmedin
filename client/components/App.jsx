@@ -77,7 +77,6 @@ class App extends React.Component {
         this.setState({
           topics: resp.data
         });
-        console.log('this.state.topics === ', this.state.topics);
       })
       .catch(err => {
         console.log('ERROR: ', err);
@@ -174,7 +173,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('username', this.state.username);
 	  if (!this.state.isLoggedIn) {
       return (
         <SignUp
@@ -220,16 +218,17 @@ class App extends React.Component {
                   handleFilmClick={this.handleFilmClick}
                 />
             ) : (this.state.view === 'showForumView') ? (
-                <Forum 
+                <Forum
                   topics={this.state.topics}
                   handleCreateTopicClick={this.handleCreateTopicClick}
+
                 />
             ) : (this.state.view === 'showCreateTopicView') ? (
-                <CreateTopic 
-                  
+                <CreateTopic
+                  userID={this.state.userID}
                 />
             ) : (this.state.view === 'showCreateMessageView') ? (
-                <CreateMessage 
+                <CreateMessage
 
                 />
             ) : (
