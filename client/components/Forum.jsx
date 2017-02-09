@@ -14,6 +14,7 @@ class Forum extends React.Component {
       var topicTitle = $(this).text();
       helpers.getMessagesByTopicTitle(topicTitle)
         .then(resp => {
+          console.log('resp.data === ', resp.data);
           context.props.handleTopicClick(resp.data);
         })
         .catch(err => {
