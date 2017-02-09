@@ -118,10 +118,6 @@ class App extends React.Component {
     })
   }
 
-<<<<<<< HEAD
-  handleTopicClick(e) {
-    console.log(e);
-=======
   handleProfileClick() {
     helpers.getProfile((this.state.profile.userID)).then(response => {
       response.data.friends = response.data.friends.filter(friend => (friend.ID !== 0))
@@ -140,7 +136,6 @@ class App extends React.Component {
       view: 'showThreadView'
     });
     console.log('Current Messages for Thread View === ', this.state.topicMessages);
->>>>>>> 3f3ec6108190bbda5528ae7c9581c97f1e9f3078
   }
 
   handleLogOutClick() {
