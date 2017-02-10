@@ -1,74 +1,103 @@
 import React from 'react';
 import helpers from '../lib/helpers';
-import $ from 'jquery';
+import ThreadList from './ThreadList';
+import Thread from './Thread';
+import CreateThread from './CreateThread';
 
 class Forum extends React.Component {
   constructor (props) {
     super(props);
-    this.onClick = this.onClick.bind(this);
+    this.state = {
+      view: 'showThreadListView',
+      topics: this.props.topics,
+      threadMessages: [],
+      currentTopicID: 0
+    }
+    this.getTopics = this.getTopics.bind(this);
+    this.handleThreadEntryClick = this.handleThreadEntryClick.bind(this);
+    this.setShowThreadListView = this.setShowThreadListView.bind(this);
+    this.setShowThreadView = this.setShowThreadView.bind(this);
+    this.setShowCreateThreadView = this.setShowCreateThreadView.bind(this);
   }
 
-  componentDidMount() {
-    this.onClick();
+  getTopics() {
+    helpers.getTopics()
+      .then(resp => {
+        this.setState({
+          topics: resp.data,
+        }, this.setShowThreadListView);
+      })
+      .catch(err => {
+        console.log('ERROR: ', err);
+      });
   }
 
-  componentDidUpdate() {
-    this.onClick();
+  handleThreadEntryClick(title) {
+    helpers.getMessagesByTitle(title)
+      .then(resp => {
+        console.log('Messages from Thread Click === ', resp.data[0].topicID);
+        this.setState({
+          threadMessages: resp.data,
+          currentTopicID: resp.data[0].topicID
+        }, this.setShowThreadView);
+      })
+      .catch(err => {
+        console.log('ERROR: ', err);
+      });
   }
 
-  onClick() {
-    var context = this;
-    $('.topic').on('click', function(e) {
-      var topicTitle = $(this).text();
-      helpers.getMessagesByTopicTitle(topicTitle)
-        .then(resp => {
-          console.log('resp.data === ', resp.data);
-          context.props.handleTopicClick(resp.data);
-        })
-        .catch(err => {
-          console.log('ERROR: ', err);
-        });
+  setShowThreadListView() {
+    this.setState({
+      view: 'showThreadListView'
     });
   }
 
+  setShowThreadView() {
+    this.setState({
+      view: 'showThreadView'
+    });
+  }
 
+  setShowCreateThreadView() {
+    this.setState({
+      view: 'showCreateThreadView'
+    });
+  }
 
   render() {
-    const { topics } = this.props;
-    const threads = topics.map((topic, i) => {
+    if (this.state.view === 'showThreadListView') {
       return (
-        <tr key={i} value={topic.topic}>
-          <th className="topic">{topic.topic}</th>
-          <th>{topic.createdAt}</th>
-          <th>{topic.updatedAt}</th>
-        </tr>
-      )
-    })
-    return (
-      <div className="panel panel-default">
-        <button onClick={this.props.handleCreateTopicClick} className="btn btn-primary btn-lg btn-success">Create Topic</button>
-        <div className="panel-heading">Movie Forum</div>
-        <div className="panel-body">
-        </div>
+        <ThreadList
+          threadTopics={this.state.topics}
+          handleThreadEntryClick={this.handleThreadEntryClick}
+          setShowCreateThreadView={this.setShowCreateThreadView}
+        />
+      );
+    } else if (this.state.view === 'showThreadView') {
+      return (
+        <Thread
+          userID={this.props.userID}
+          currentTopicID={this.state.currentTopicID}
+          threadMessages={this.state.threadMessages}
+          setShowThreadListView={this.setShowThreadListView}
 
-        <table className="table">
-          <tbody>
-            <tr>
-              <th>Topic Title</th>
-              <th>Created At</th>
-              <th>Last Post</th>
-            </tr>
-            { threads }
-          </tbody>
-        </table>
-      </div>
-    )
+        />
+      );
+    } else if (this.state.view === 'showCreateThreadView') {
+      return (
+        <CreateThread
+          userID={this.props.userID}
+          getTopics={this.getTopics}
+          setShowThreadListView={this.setShowThreadListView}
+        />
+      )
+    }
   }
 }
 
 Forum.propTypes = {
   topics: React.PropTypes.array.isRequired,
-  handleCreateTopicClick: React.PropTypes.func.isRequired
+  userID: React.PropTypes.number.isRequired
 }
 
 export default Forum;
