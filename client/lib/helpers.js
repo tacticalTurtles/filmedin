@@ -9,7 +9,7 @@ var getRequest = function (url) {
 
     },
     url: url,
-    baseURL: 'http://localhost:5000/',
+    baseURL: 'filmedinjs.herokuapp.com/',
     method: 'GET'
   }
   return request;
@@ -19,14 +19,14 @@ var helpers = {};
 
 helpers.logInUser = function(data) {
   return axios.request({
-    url: 'http://localhost:5000/signin',
+    url: 'filmedinjs.herokuapp.com/signin',
     method: 'POST',
     data: data
   });
 }
 helpers.signUpUser = function(data) {
   return axios.request({
-    url: 'http://localhost:5000/signup',
+    url: 'filmedinjs.herokuapp.com/signup',
     method: 'POST',
     data: data
   });
@@ -45,7 +45,7 @@ helpers.getFilm = function(id) {
 }
 
 helpers.getMovies = function() {
-  var url = 'http://data.tmsapi.com/v1.1/movies/showings?startDate=2017-02-08&zip=94030&imageSize=Sm&imageText=false&api_key=jpc43qej3q9yvtdy4urfh3rr'
+  var url = 'http://data.tmsapi.com/v1.1/movies/showings?startDate=2017-02-09&zip=94030&api_key=hrwx8yckjeehxpuxuy73qzqj'
   return axios.request(getRequest(url))
 }
 
@@ -57,7 +57,7 @@ helpers.searchFilm = function(search) {
 }
 helpers.addFriend = function(friendID) {
   return axios.request({
-    url: 'http://localhost:5000/friend',
+    url: 'filmedinjs.herokuapp.com/friend',
     method: 'POST',
     headers: {
       'x-access-token': window.localStorage.getItem('filmedInToken'),
@@ -70,7 +70,7 @@ helpers.addFriend = function(friendID) {
 }
 helpers.addRating = function(filmID, rating, review) {
   return axios.request({
-    url: 'http://localhost:5000/rating',
+    url: 'filmedinjs.herokuapp.com/rating',
     method: 'POST',
     headers: {
       'x-access-token': window.localStorage.getItem('filmedInToken'),
@@ -105,7 +105,7 @@ helpers.dateDiff = function(date) {
 helpers.getUserIdByName = function(username) {
   return axios({
     method: 'get',
-    url: 'http://localhost:5000/users',
+    url: 'filmedinjs.herokuapp.com/users',
     params: {
       username: username
     }
@@ -113,29 +113,22 @@ helpers.getUserIdByName = function(username) {
 }
 
 helpers.getMessagesByTopicId = function(topicId) {
-  /* TODO */
+  return axios({
+    method: 'get',
+    url: 'filmedinjs.herokuapp.com/getMessagesByTopicID'
+  })
 }
 
 helpers.getTopics = function () {
   return axios({
     method: 'get',
-    url: 'http://localhost:5000/topics'
-  });
-}
-
-helpers.setFavoriteGenre = (category, id) => {
-  return axios.request({
-    url: 'http://localhost:5000/setFavoriteGenre',
-    data: {
-      category: category,
-      id: id
-    }
+    url: 'filmedinjs.herokuapp.com/topics'
   });
 }
 
 helpers.postMessage = function(topicID, topicMessage, userID) {
   return axios.request({
-  url: 'http://localhost:5000/postMessage',
+  url: 'filmedinjs.herokuapp.com/postMessage',
     method: 'POST',
     headers: {
       'x-access-token': window.localStorage.getItem('filmedInToken'),
@@ -149,9 +142,31 @@ helpers.postMessage = function(topicID, topicMessage, userID) {
   });
 }
 
+helpers.setFavoriteGenre = (category, id) => {
+  return axios.request({
+    url: 'filmedinjs.herokuapp.com/setFavoriteGenre',
+    method: 'POST',
+    data: {
+      category: category,
+      id: id
+    }
+  });
+}
+
+helpers.setLeastFavoriteGenre = (cafitegory, id) => {
+  return axios.request({
+    url: 'filmedinjs.herokuapp.com/setLeastFavoriteGenre',
+    method: 'POST',
+    data: {
+      category: category,
+      id: id
+    }
+  });
+}
+
 helpers.postNewTopic = function(topicName) {
   return axios.request({
-  url: 'http://localhost:5000/postTopic',
+  url: 'filmedinjs.herokuapp.com/postTopic',
     method: 'POST',
     headers: {
       'x-access-token': window.localStorage.getItem('filmedInToken'),
@@ -165,7 +180,7 @@ helpers.postNewTopic = function(topicName) {
 
 helpers.getMessagesByTopicTitle = function(title) {
   return axios.request({
-    url: 'http://localhost:5000/getMessagesByTitle',
+    url: 'filmedinjs.herokuapp.com/getMessagesByTitle',
     method: 'GET',
     headers: {
       'x-access-token': window.localStorage.getItem('filmedInToken'),
