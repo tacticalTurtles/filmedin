@@ -35,7 +35,6 @@ class Forum extends React.Component {
   handleThreadEntryClick(title) {
     helpers.getMessagesByTitle(title)
       .then(resp => {
-        console.log('Messages from Thread Click === ', resp.data[0].topicID);
         this.setState({
           threadMessages: resp.data,
           currentTopicID: resp.data[0].topicID
