@@ -53,6 +53,7 @@ class App extends React.Component {
     this.handleCreateTopicSubmit = this.handleCreateTopicSubmit.bind(this);
     this.update = this.update.bind(this);
     this.handleSubmitReply = this.handleSubmitReply.bind(this);
+    // this.handleThreadReply = this.handleThreadReply.bind(this);
 
   }
   componentWillMount () {
@@ -107,6 +108,7 @@ class App extends React.Component {
     })
   }
 
+
   handleCreateTopicSubmit() {
     this.setState({
       view: 'showForumView'
@@ -118,6 +120,19 @@ class App extends React.Component {
       view: 'showCreateMessageView'
     })
   }
+
+  // updateThreadMessages(topicID) {
+  //   helpers.getMessagesByTopicId(topicID)
+  //     .then(resp => {
+  //       console.log('handleThreadReply resp', resp);
+  //       this.setState({
+  //         topicMessages: resp.data
+  //       })
+  //     })
+  //     .catch(err => {
+  //       console.log('Error: ', err);
+  //     })
+  // }
 
   handleSearchFilmClick(searchFilm) {
     this.setState({
@@ -303,6 +318,7 @@ class App extends React.Component {
                   userID={this.state.profile.userID}
                   handleSubmitReply={this.handleSubmitReply}
                   handleTopicClick={this.handleTopicClick}
+                  handleThreadReply={this.handleThreadReply}
                 />
             ) : (
                 <SearchUser

@@ -1,15 +1,36 @@
 import React from 'react';
 import ReplyFieldGroup from './common/ReplyFieldGroup';
+import helpers from '../lib/helpers'
 
 class Thread extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      messages: this.props.messages
+    }
+    this.updateThreadMessages = this.updateThreadMessages.bind(this);
+  }
+
+  updateThreadMessages() {
+    helpers.getMessagesByTopicId(this.props.messages[0].topicID)
+      .then(resp => {
+        console.log('handleThreadReply resp', resp);
+        this.setState({
+          messages: resp.data
+        })
+      })
+      .then(() => {
+        this.forceUpdate();
+      })
+      .catch(err => {
+        console.log('Error: ', err);
+      })
   }
  
   render() {
     return (
       <div>
-        {this.props.messages.map((message, i) => {
+        {this.state.messages.map((message, i) => {
           return (
             <div
               key={i}
@@ -30,7 +51,8 @@ class Thread extends React.Component {
         <ReplyFieldGroup
           topicID={this.props.messages[0].topicID}
           userID={this.props.userID}
-          handleSubmitReply= {this.props.handleSubmitReply}
+          handleSubmitReply={this.props.handleSubmitReply}
+          updateThreadMessages={this.updateThreadMessages}
         />
       </div>
     )

@@ -12,7 +12,6 @@ class ReplyFieldGroup extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-
   onChange(e) {
     this.setState({
       [e.target.name]: e.target.value
@@ -37,6 +36,7 @@ class ReplyFieldGroup extends React.Component {
     const { topicMessage } = this.state;
     const { topicID, userID } = this.props;
     this.postMessage(topicID, topicMessage, userID);
+    this.props.updateThreadMessages();
   }
 
   render() {
