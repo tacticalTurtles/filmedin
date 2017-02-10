@@ -12,8 +12,6 @@ import SearchFilm from './SearchFilm';
 import NavBar from './NavBar';
 import Forum from './Forum';
 import Profile from './Profile';
-import CreateTopic from './CreateTopic';
-import Thread from './Thread';
 
 
 class App extends React.Component {
@@ -30,10 +28,8 @@ class App extends React.Component {
       searchUser: [],
       searchFilm: [],
       username: '',
-      userID: null,
       topics: [],
       currentTopicID: null,
-      topicMessages: []
 
     }
 
@@ -48,14 +44,9 @@ class App extends React.Component {
     this.rateFilm = this.rateFilm.bind(this);
     this.handleForumClick = this.handleForumClick.bind(this);
     this.handleProfileClick = this.handleProfileClick.bind(this);
-    this.handleCreateTopicClick = this.handleCreateTopicClick.bind(this);
-    this.handleTopicClick = this.handleTopicClick.bind(this);
     this.handleDropDownPreferred = this.handleDropDownPreferred.bind(this);
     this.handleDropDownLeastPreferred = this.handleDropDownLeastPreferred.bind(this);
-    this.handleCreateTopicSubmit = this.handleCreateTopicSubmit.bind(this);
-    this.update = this.update.bind(this);
-    this.handleSubmitReply = this.handleSubmitReply.bind(this);
-    // this.handleThreadReply = this.handleThreadReply.bind(this);
+
   }
   componentWillMount () {
     this.getTopics();
@@ -65,10 +56,16 @@ class App extends React.Component {
     }
   }
 
-  update() {
-    console.log('are u updating');
-    this.getTopics();
-    this.forceUpdate();
+  getTopics() {
+    helpers.getTopics()
+      .then(resp => {
+        this.setState({
+          topics: resp.data
+        });
+      })
+      .catch(err => {
+        console.log('ERROR: ', err);
+      });
   }
 
   addFriend(friend) {
@@ -85,66 +82,15 @@ class App extends React.Component {
   }
 
   rateFilm(rating, filmid) {
-
     helpers.addRating(filmid, rating, '').then(response => {
-      console.log('rated');
+      console.log('Rated Film ', rating);
     })
   }
-
-  getTopics() {
-    helpers.getTopics()
-      .then(resp => {
-        this.setState({
-          topics: resp.data
-        });
-      })
-      .catch(err => {
-        console.log('ERROR: ', err);
-      });
-  }
-
-  handleCreateTopicClick() {
-    this.setState({
-      view: 'showCreateTopicView'
-    })
-  }
-
-
-  handleCreateTopicSubmit() {
-    this.setState({
-      view: 'showForumView'
-    })
-  }
-
-  handleCreateMessageClick() {
-    this.setState({
-      view: 'showCreateMessageView'
-    })
-  }
-
-  // updateThreadMessages(topicID) {
-  //   helpers.getMessagesByTopicId(topicID)
-  //     .then(resp => {
-  //       console.log('handleThreadReply resp', resp);
-  //       this.setState({
-  //         topicMessages: resp.data
-  //       })
-  //     })
-  //     .catch(err => {
-  //       console.log('Error: ', err);
-  //     })
-  // }
 
   handleSearchFilmClick(searchFilm) {
     this.setState({
       searchFilm: searchFilm,
       view: 'showSearchFilmView'
-    })
-  }
-
-  handleSubmitReply() {
-    this.setState({
-      view: 'showForumView'
     })
   }
 
@@ -158,20 +104,11 @@ class App extends React.Component {
     helpers.getProfile((this.state.profile.userID)).then(response => {
       response.data.friends = response.data.friends.filter(friend => (friend.ID !== 0))
       response.data.isFriend = this.state.profile.friends.map(friend => friend.ID).includes(this.state.profile.userID);
-      console.log(response.data);
       this.setState({
         view: 'showProfileView',
         clickedUser: response.data
       });
     });
-  }
-
-  handleTopicClick(data) {
-    this.setState({
-      topicMessages: data,
-      view: 'showThreadView'
-    });
-    console.log('Current Messages for Thread View === ', this.state.topicMessages);
   }
 
   handleLogOutClick() {
@@ -210,7 +147,6 @@ class App extends React.Component {
         console.log('error clientside', err);
       })
   }
-
 
   handleUserClick(user) {
     helpers.getProfile((user.id || user.ID)).then(response => {
@@ -299,8 +235,7 @@ class App extends React.Component {
             ) : (this.state.view === 'showForumView') ? (
                 <Forum
                   topics={this.state.topics}
-                  handleCreateTopicClick={this.handleCreateTopicClick}
-                  handleTopicClick={this.handleTopicClick}
+                  userID={this.state.profile.userID}
                 />
             ) : (this.state.view === 'showProfileView') ? (
                 <Profile
@@ -310,24 +245,6 @@ class App extends React.Component {
                   handleDropDownPreferred={this.handleDropDownPreferred}
                   handleDropDownLeastPreferred={this.handleDropDownLeastPreferred}
                   addFriend={this.addFriend}
-                />
-            ) : (this.state.view === 'showCreateTopicView') ? (
-                <CreateTopic
-                  userID={this.state.profile.userID}
-                  handleCreateTopicSubmit={this.handleCreateTopicSubmit}
-                  update={this.update}
-                />
-            ) : (this.state.view === 'showCreateMessageView') ? (
-                <CreateMessage
-
-                />
-            ) : (this.state.view === 'showThreadView') ? (
-                <Thread
-                  messages={this.state.topicMessages}
-                  userID={this.state.profile.userID}
-                  handleSubmitReply={this.handleSubmitReply}
-                  handleTopicClick={this.handleTopicClick}
-                  handleThreadReply={this.handleThreadReply}
                 />
             ) : (
                 <SearchUser
@@ -344,4 +261,5 @@ class App extends React.Component {
     }
   }
 }
+
 export default App;

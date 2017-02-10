@@ -1,7 +1,7 @@
 import React from 'react';
-import helpers from '../../lib/helpers';
+import helpers from '../lib/helpers';
 
-class TextFieldGroup extends React.Component {
+class CreateThreadForm extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
@@ -32,8 +32,7 @@ class TextFieldGroup extends React.Component {
           .then(resp => {
             console.log('Message Posted');
             // TO DO: Redirect to Forum or the Same Thread (with new posts)
-            this.props.update();
-            this.props.handleCreateTopicSubmit();
+            this.props.getTopics();
           });
       })
       .catch(err => {
@@ -79,9 +78,10 @@ class TextFieldGroup extends React.Component {
   }
 }
 
-TextFieldGroup.propTypes = {
+CreateThreadForm.propTypes = {
+  getTopics: React.PropTypes.func.isRequired,
   userID: React.PropTypes.number.isRequired
 }
 
 
-export default TextFieldGroup;
+export default CreateThreadForm;

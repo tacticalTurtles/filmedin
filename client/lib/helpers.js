@@ -112,10 +112,13 @@ helpers.getUserIdByName = function(username) {
   });
 }
 
-helpers.getMessagesByTopicId = function(topicId) {
+helpers.getMessagesByTopicId = function(topicID) {
   return axios({
     method: 'get',
-    url: 'http://localhost:5000/getMessagesByTopicID'
+    url: 'http://localhost:5000/getMessagesByTopicID',
+    params: {
+      topicID: topicID
+    }
   })
 }
 
@@ -178,7 +181,7 @@ helpers.postNewTopic = function(topicName) {
   });
 }
 
-helpers.getMessagesByTopicTitle = function(title) {
+helpers.getMessagesByTitle = function(title) {
   return axios.request({
     url: 'http://localhost:5000/getMessagesByTitle',
     method: 'GET',
