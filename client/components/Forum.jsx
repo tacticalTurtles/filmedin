@@ -8,6 +8,14 @@ class Forum extends React.Component {
     this.onClick = this.onClick.bind(this);
   }
 
+  componentDidMount() {
+    this.onClick();
+  }
+
+  componentDidUpdate() {
+    this.onClick();
+  }
+
   onClick() {
     var context = this;
     $('.topic').on('click', function(e) {
@@ -28,7 +36,7 @@ class Forum extends React.Component {
     const threads = topics.map((topic, i) => {
       return (
         <tr key={i} value={topic.topic}>
-          <th className="topic" onClick={this.onClick}>{topic.topic}</th>
+          <th className="topic">{topic.topic}</th>
           <th>{topic.createdAt}</th>
           <th>{topic.updatedAt}</th>
         </tr>

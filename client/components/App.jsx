@@ -52,6 +52,7 @@ class App extends React.Component {
     this.handleDropDownSelect = this.handleDropDownSelect.bind(this);
     this.handleCreateTopicSubmit = this.handleCreateTopicSubmit.bind(this);
     this.update = this.update.bind(this);
+    this.handleSubmitReply = this.handleSubmitReply.bind(this);
 
   }
   componentWillMount () {
@@ -122,6 +123,12 @@ class App extends React.Component {
     this.setState({
       searchFilm: searchFilm,
       view: 'showSearchFilmView'
+    })
+  }
+
+  handleSubmitReply() {
+    this.setState({
+      view: 'showForumView'
     })
   }
 
@@ -282,7 +289,7 @@ class App extends React.Component {
                 />
             ) : (this.state.view === 'showCreateTopicView') ? (
                 <CreateTopic
-                  userID={this.state.userID}
+                  userID={this.state.profile.userID}
                   handleCreateTopicSubmit={this.handleCreateTopicSubmit}
                   update={this.update}
                 />
@@ -293,7 +300,9 @@ class App extends React.Component {
             ) : (this.state.view === 'showThreadView') ? (
                 <Thread
                   messages={this.state.topicMessages}
-                  userID={this.state.userID}
+                  userID={this.state.profile.userID}
+                  handleSubmitReply={this.handleSubmitReply}
+                  handleTopicClick={this.handleTopicClick}
                 />
             ) : (
                 <SearchUser

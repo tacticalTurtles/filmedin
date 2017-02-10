@@ -25,6 +25,7 @@ class ReplyFieldGroup extends React.Component {
         console.log('Message Posted');
         console.log('Response: ', resp);
         // TO DO: Redirect to Thread Page with Updated Posts
+        this.props.handleSubmitReply();
       })
       .catch(err => {
         console.log('ERROR: ', err);
@@ -63,7 +64,8 @@ class ReplyFieldGroup extends React.Component {
 
 ReplyFieldGroup.propTypes = {
   topicID: React.PropTypes.number.isRequired,
-  userID: React.PropTypes.number.isRequired
+  userID: React.PropTypes.number.isRequired,
+  handleSubmitReply: React.PropTypes.func.isRequired
 }
 
 

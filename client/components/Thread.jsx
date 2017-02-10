@@ -30,6 +30,7 @@ class Thread extends React.Component {
         <ReplyFieldGroup
           topicID={this.props.messages[0].topicID}
           userID={this.props.userID}
+          handleSubmitReply= {this.props.handleSubmitReply}
         />
       </div>
     )
@@ -38,7 +39,8 @@ class Thread extends React.Component {
 
 Thread.propTypes = {
   messages: React.PropTypes.array.isRequired,
-  userID: React.PropTypes.number.isRequired
+  userID: React.PropTypes.number.isRequired,
+  handleSubmitReply: React.PropTypes.func.isRequired
 }
 
 export default Thread;
