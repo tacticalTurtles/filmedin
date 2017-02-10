@@ -33,7 +33,7 @@ app.post('/friend', routeHelpers.addFriend);
 app.post('/rating', routeHelpers.addRating);
 app.post('/testUpload', (req, res, next) => {
   console.log(req.files);
-  const {file} = req.files;
+  const file = req.files.file;
   var stream = fs.createReadStream(file.path);
   return s3fsImplementation.writeFile(file.originalFilename, stream).then( ()=> {
     fs.unlink(file.path, (err) => {
