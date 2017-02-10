@@ -113,7 +113,10 @@ helpers.getUserIdByName = function(username) {
 }
 
 helpers.getMessagesByTopicId = function(topicId) {
-  /* TODO */
+  return axios({
+    method: 'get',
+    url: 'http://localhost:5000/getMessagesByTopicID'
+  })
 }
 
 helpers.getTopics = function () {
@@ -135,17 +138,17 @@ helpers.setFavoriteGenre = (category, id) => {
 
 helpers.postMessage = function(topicID, topicMessage, userID) {
   return axios.request({
-  url: 'http://localhost:5000/postMessage',
-    method: 'POST',
-    headers: {
-      'x-access-token': window.localStorage.getItem('filmedInToken'),
-      'Content-Type': 'application/json; charset=utf-8',
-    },
-    data: {
-      topicID: topicID,
-      topicMessage: topicMessage,
-      userID: userID
-    }
+    url: 'http://localhost:5000/postMessage',
+      method: 'POST',
+      headers: {
+        'x-access-token': window.localStorage.getItem('filmedInToken'),
+        'Content-Type': 'application/json; charset=utf-8',
+      },
+      data: {
+        topicID: topicID,
+        topicMessage: topicMessage,
+        userID: userID
+      }
   });
 }
 
