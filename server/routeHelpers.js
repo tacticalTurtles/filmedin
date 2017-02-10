@@ -10,13 +10,11 @@ module.exports = {
   },
   home: function (req, res, next) {
     auth.checkAuth(req, user => {
-      console.log('user', user)
       if (user !== null) {
         db.profile.getByUserID(user.id, (err, rows) => {
           if (err) {
             console.log('home -> profile.getByUserID', err);
           }
-          console.log(rows);
           var profile = rows[0];
           db.friend.get(profile.id, (err, rows) => {
             if (err) {
@@ -35,7 +33,7 @@ module.exports = {
                 profile.recs = rows;
                 db.rating.getFriendsDifferences(user.id, (err, rows) => {
                   if (err) {
-                    console.log('home -> rating.getFriendsDifferences')
+                    console.log('home -> rating.getFriendsDifferences', err)
                   }
                   profile.friendsAndRank = rows
                   res.send(JSON.stringify(profile));
@@ -51,7 +49,6 @@ module.exports = {
   },
   profile: function (req, res, next) {
     auth.checkAuth(req, user => {
-      console.log('req params', req.params);
       if (user !== null) {
         db.profile.get(req.params.id, (err, rows) => {
           if (err) {
@@ -103,8 +100,8 @@ module.exports = {
                   }
                   // film.myRating = {};
                   film.myRating = (myRatings.length !== 0) ? myRatings[0] : {};
-                  console.log('myRatings', myRatings)
-                  console.log('film.myRating', film.myRating)
+                  // console.log('myRatings', myRatings)
+                  // console.log('film.myRating', film.myRating)
                   //add 'suggested': true/false property to film
 
 
@@ -120,7 +117,7 @@ module.exports = {
                 console.log('film -> gb.get', err);
               }
               var movie = JSON.parse(body.body);
-              console.log('film -> gb.get -> body', movie);
+              // console.log('film -> gb.get -> body', movie);
               var film = {};
               film.guideBox = movie.id;
               film.name = movie.title;
