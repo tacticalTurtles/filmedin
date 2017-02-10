@@ -3,7 +3,7 @@ import React from 'react';
 
 var UserEntry = ({handleUserClick, user}) => (
 
-	<div className="user-entry" onClick={() => handleUserClick(user)}>
+  <div className="user-entry" onClick={() => handleUserClick(user)}>
       <div className="user-entry-username">
       @{user.username}
     </div>
