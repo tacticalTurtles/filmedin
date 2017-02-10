@@ -38,8 +38,7 @@ var UserHome = ({handleFilmClick, handleUserClick, profile, username, feed}) => 
 		</div>
 		<div className="user-home-right-panel">
 			<div className="user-home-recs">
-				<span className="user-home-recs-title">Now Playing</span>
-				<Nowplaying />
+				<Nowplaying user={profile}/>
 			</div>
 			<div className="user-home-friends">
 				<UserList
