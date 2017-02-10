@@ -50,7 +50,8 @@ class App extends React.Component {
     this.handleProfileClick = this.handleProfileClick.bind(this);
     this.handleCreateTopicClick = this.handleCreateTopicClick.bind(this);
     this.handleTopicClick = this.handleTopicClick.bind(this);
-    this.handleDropDownSelect = this.handleDropDownSelect.bind(this);
+    this.handleDropDownPreferred = this.handleDropDownPreferred.bind(this);
+    this.handleDropDownLeastPreferred = this.handleDropDownLeastPreferred.bind(this);
 
   }
   componentWillMount () {
@@ -146,11 +147,18 @@ class App extends React.Component {
     })
   }
 
-  handleDropDownSelect(category) {
+  handleDropDownPreferred(category) {
     helpers.setFavoriteGenre(category, this.state.profile.id).then( () => {
       window.alert('set genre as: ' + category)
     })
   }
+
+  handleDropDownLeastPreferred(category) {
+    helpers.setLeastFavoriteGenre(category, this.state.profile.id).then( () => {
+      window.alert('set least favorite genre as: ' + category)
+    })
+  }
+
   handleLogInClick(username) {
     this.handleHomeClick();
     this.setState({
@@ -264,7 +272,8 @@ class App extends React.Component {
                   handleFilmClick={this.handleFilmClick}
                   handleUserClick={this.handleUserClick}
                   user={this.state.clickedUser}
-                  handleDropDownSelect={this.handleDropDownSelect}
+                  handleDropDownPreferred={this.handleDropDownPreferred}
+                  handleDropDownLeastPreferred={this.handleDropDownLeastPreferred}
                   addFriend={this.addFriend}
                 />
             ) : (this.state.view === 'showCreateTopicView') ? (
