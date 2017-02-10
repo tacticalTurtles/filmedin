@@ -45,7 +45,7 @@ app.post('/testUpload', (req, res, next) => {
   res.send();
 })
 
-app.get('linkedinjs/herokuapp.com/', routeHelpers.default);
+app.get('/', routeHelpers.default);
 
 app.get('/home', routeHelpers.home);
     //send overall /recs
