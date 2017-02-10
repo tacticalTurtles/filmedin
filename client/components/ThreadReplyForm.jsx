@@ -1,7 +1,7 @@
 import React from 'react';
-import helpers from '../../lib/helpers';
+import helpers from '../lib/helpers';
 
-class ReplyFieldGroup extends React.Component {
+class ThreadReplyForm extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
@@ -24,7 +24,7 @@ class ReplyFieldGroup extends React.Component {
         console.log('Message Posted');
         console.log('Response: ', resp);
         // TO DO: Redirect to Thread Page with Updated Posts
-        this.props.handleSubmitReply();
+        this.props.getMessages();
       })
       .catch(err => {
         console.log('ERROR: ', err);
@@ -36,7 +36,9 @@ class ReplyFieldGroup extends React.Component {
     const { topicMessage } = this.state;
     const { topicID, userID } = this.props;
     this.postMessage(topicID, topicMessage, userID);
-    this.props.updateThreadMessages();
+    this.setState({
+      topicMessage: ''
+    })
   }
 
   render() {
@@ -62,11 +64,11 @@ class ReplyFieldGroup extends React.Component {
   }
 }
 
-ReplyFieldGroup.propTypes = {
+ThreadReplyForm.propTypes = {
   topicID: React.PropTypes.number.isRequired,
   userID: React.PropTypes.number.isRequired,
-  handleSubmitReply: React.PropTypes.func.isRequired
+  getMessages: React.PropTypes.func.isRequired
 }
 
 
-export default ReplyFieldGroup;
+export default ThreadReplyForm;

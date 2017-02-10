@@ -5,13 +5,12 @@ module.exports = {
     const { topicID, topicMessage, userID } = req.body;
     const queryStr = `insert into message (userID, topicID, message) values ('${userID}','${topicID}','${topicMessage}')`;
     db.query(queryStr, (err, data) => {
-      console.log('post message data', data);
       res.json(data);
     });
   },
   getMessagesByTopicID: (req, res, next) => {
     const { topicID } = req.query;
-    const queryStr = `select * from message where topicID = '${topicID}'`;
+    const queryStr = `select distinct user.username, message.message, message.createdAt, message.updatedAt, message.topicID from topic inner join message on message.topicID = '${topicID}' inner join user where message.userID = user.id`;
     db.query(queryStr, (err, data) => {
       res.json(data);
     });
