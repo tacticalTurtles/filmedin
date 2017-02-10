@@ -31,6 +31,11 @@ var dbObj =  {
       console.log('category:', category);
       console.log('id', id);
       db.query('update profile SET preferredGenre = ? where id = ?', [category, id], cb);
+    },
+    updateLeastPreferredGenre: (category, id, cb) => {
+      console.log('category:', category);
+      console.log('id', id);
+      db.query('update profile SET leastPreferredGenre = ? where id = ?', [category, id], cb);
     }
   },
   friend: {

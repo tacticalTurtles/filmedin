@@ -2,43 +2,43 @@ import React from 'react';
 import helpers from '../lib/helpers'
 
 class FilmedInNavBar extends React.Component{
-	constructor(props) {
-		super(props);
-		this.state = {
-			userSearch: '',
-			filmSearch: ''
-		}
-	}
-	changeUser (e) {
-		this.setState({userSearch: e.target.value});
-	}
-	changeFilm (e) {
-		this.setState({filmSearch: e.target.value});
-	}
-	searchFilm() {
-		helpers.searchFilm(this.state.filmSearch).then(films => {
-			console.log(films);
+  constructor(props) {
+    super(props);
+    this.state = {
+      userSearch: '',
+      filmSearch: ''
+    }
+  }
+  changeUser (e) {
+    this.setState({userSearch: e.target.value});
+  }
+  changeFilm (e) {
+    this.setState({filmSearch: e.target.value});
+  }
+  searchFilm() {
+    helpers.searchFilm(this.state.filmSearch).then(films => {
+      console.log(films);
       this.props.searchFilm(films.data);
       this.setState({
-      	filmSearch: ''
+        filmSearch: ''
       })
     }).catch(err => {
       console.log('error with search film', err)
     })
 
-	}
-	searchUser() {
-		helpers.searchProfile(this.state.userSearch).then(friends => {
-			console.log(friends);
+  }
+  searchUser() {
+    helpers.searchProfile(this.state.userSearch).then(friends => {
+      console.log(friends);
       this.props.searchUser(friends.data);
       this.setState({
-      	userSearch: ''
+        userSearch: ''
       })
     }).catch(err => {
       console.log('error with search user', err)
     })
 
-	}
+  }
   searchFilmKeyPress (e) {
     if (e.key === 'Enter') {
       this.searchFilm();
@@ -49,8 +49,8 @@ class FilmedInNavBar extends React.Component{
       this.searchUser();
     }
   }
-	render() {
-		return (
+  render() {
+    return (
         <div>
           <div className="navbar navbar-default navbar-fixed-top login-bar">
               <div className="container login-bar-container">
@@ -59,7 +59,7 @@ class FilmedInNavBar extends React.Component{
                   </div>
                   <div className="nav-bar-button nav-bar-home nav-bar-hover" onClick={this.props.handleHomeClick}>HOME</div>
                   <div className="nav-bar-button nav-bar-hover" onClick={this.props.handleForumClick}>FORUM</div>
-									<div className="nav-bar-button nav-bar-hover" onClick={this.props.handleProfileClick}>PROFILE</div>
+                  <div className="nav-bar-button nav-bar-hover" onClick={this.props.handleProfileClick}>PROFILE</div>
                   <div className="nav-bar-button">
                     <input type="text" placeholder="Search Film" onKeyDown={this.searchFilmKeyPress.bind(this)} onChange={this.changeFilm.bind(this)} value={this.state.filmSearch} />
                     <span onClick={this.searchFilm.bind(this)} className="glyphicon glyphicon-search"></span>
@@ -79,7 +79,7 @@ class FilmedInNavBar extends React.Component{
 
 
       )
-	}
+  }
 }
 
 export default FilmedInNavBar;

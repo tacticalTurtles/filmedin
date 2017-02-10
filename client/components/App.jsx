@@ -20,7 +20,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-    	isLoggedIn: false,
+      isLoggedIn: false,
       profile: {},
       clickedFilm: {},
       clickedFilmRecommend: false,
@@ -251,7 +251,7 @@ class App extends React.Component {
   }
 
   render() {
-	  if (!this.state.isLoggedIn) {
+    if (!this.state.isLoggedIn) {
       return (
         <SignUp
           handleLogInClick={this.handleLogInClick}
