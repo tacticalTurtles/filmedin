@@ -33,7 +33,7 @@ module.exports = {
                 profile.recs = rows;
                 db.rating.getFriendsDifferences(user.id, (err, rows) => {
                   if (err) {
-                    console.log('home -> rating.getFriendsDifferences')
+                    console.log('home -> rating.getFriendsDifferences', err)
                   }
                   profile.friendsAndRank = rows
                   res.send(JSON.stringify(profile));
@@ -100,8 +100,8 @@ module.exports = {
                   }
                   // film.myRating = {};
                   film.myRating = (myRatings.length !== 0) ? myRatings[0] : {};
-                  console.log('myRatings', myRatings)
-                  console.log('film.myRating', film.myRating)
+                  // console.log('myRatings', myRatings)
+                  // console.log('film.myRating', film.myRating)
                   //add 'suggested': true/false property to film
 
 
@@ -117,7 +117,7 @@ module.exports = {
                 console.log('film -> gb.get', err);
               }
               var movie = JSON.parse(body.body);
-              console.log('film -> gb.get -> body', movie);
+              // console.log('film -> gb.get -> body', movie);
               var film = {};
               film.guideBox = movie.id;
               film.name = movie.title;
@@ -293,6 +293,14 @@ module.exports = {
   updatePreferredGenre: (req, res, next) => {
     // const {category, id} = req.body;
     db.profile.updatePreferredGenre(req.body.category, req.body.id, (err, rows) => {
+      console.error(err);
+      res.send();
+    })
+  },
+
+  updateLeastPreferredGenre: (req, res, next) => {
+    const {category, id} = req.body;
+    db.profile.updateLeastPreferredGenre(category, id, (err, rows) => {
       console.error(err);
       res.send();
     })

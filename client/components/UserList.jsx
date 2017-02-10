@@ -3,14 +3,14 @@ import UserEntry from './UserEntry';
 
 
 var UserList = ({handleUserClick, allFriends}) => (
-	<div className="user-list">
-		{allFriends.map((user, i) => 
-			<UserEntry 
+  <div className="user-list">
+    {allFriends.map((user, i) => 
+      <UserEntry 
         key={i}
-				handleUserClick={handleUserClick}
-				user={user} 
-			/> )}
-	</div>
+        handleUserClick={handleUserClick}
+        user={user} 
+      /> )}
+  </div>
 )
 
 

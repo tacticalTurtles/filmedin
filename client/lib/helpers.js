@@ -112,10 +112,13 @@ helpers.getUserIdByName = function(username) {
   });
 }
 
-helpers.getMessagesByTopicId = function(topicId) {
+helpers.getMessagesByTopicId = function(topicID) {
   return axios({
     method: 'get',
-    url: 'https://filmedinjs.herokuapp.com/getMessagesByTopicID'
+    url: 'https://filmedinjs.herokuapp.com/getMessagesByTopicID',
+    params: {
+      topicID: topicID
+    }
   })
 }
 
@@ -142,6 +145,22 @@ helpers.postMessage = function(topicID, topicMessage, userID) {
   });
 }
 
+helpers.postMessage = function(topicID, topicMessage, userID) {
+  return axios.request({
+  url: 'http://localhost:5000/postMessage',
+    method: 'POST',
+    headers: {
+      'x-access-token': window.localStorage.getItem('filmedInToken'),
+      'Content-Type': 'application/json; charset=utf-8',
+    },
+    data: {
+      topicID: topicID,
+      topicMessage: topicMessage,
+      userID: userID
+    }
+  });
+}
+
 helpers.setFavoriteGenre = (category, id) => {
   return axios.request({
     url: 'https://filmedinjs.herokuapp.com/setFavoriteGenre',
@@ -153,7 +172,7 @@ helpers.setFavoriteGenre = (category, id) => {
   });
 }
 
-helpers.setLeastFavoriteGenre = (cafitegory, id) => {
+helpers.setLeastFavoriteGenre = (category, id) => {
   return axios.request({
     url: 'https://filmedinjs.herokuapp.com/setLeastFavoriteGenre',
     method: 'POST',
@@ -178,7 +197,7 @@ helpers.postNewTopic = function(topicName) {
   });
 }
 
-helpers.getMessagesByTopicTitle = function(title) {
+helpers.getMessagesByTitle = function(title) {
   return axios.request({
     url: 'https://filmedinjs.herokuapp.com/getMessagesByTitle',
     method: 'GET',

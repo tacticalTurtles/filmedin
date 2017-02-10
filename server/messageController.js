@@ -10,7 +10,7 @@ module.exports = {
   },
   getMessagesByTopicID: (req, res, next) => {
     const topicID = req.query.topicID;
-    const queryStr = `select * from message where topicID = '${topicID}'`;
+    const queryStr = `select distinct user.username, message.message, message.createdAt, message.updatedAt, message.topicID from topic inner join message on message.topicID = '${topicID}' inner join user where message.userID = user.id`;
     db.query(queryStr, (err, data) => {
       res.json(data);
     });
