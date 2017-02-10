@@ -142,6 +142,18 @@ helpers.postMessage = function(topicID, topicMessage, userID) {
 helpers.setFavoriteGenre = (category, id) => {
   return axios.request({
     url: 'http://localhost:5000/setFavoriteGenre',
+    method: 'POST',
+    data: {
+      category: category,
+      id: id
+    }
+  });
+}
+
+helpers.setLeastFavoriteGenre = (category, id) => {
+  return axios.request({
+    url: 'http://localhost:5000/setLeastFavoriteGenre',
+    method: 'POST',
     data: {
       category: category,
       id: id
