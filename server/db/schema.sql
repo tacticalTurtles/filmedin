@@ -37,6 +37,7 @@ CREATE TABLE profile (
   DOB DATE NULL,
   createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   preferredGenre VARCHAR(50),
+  leastPreferredGenre VARCHAR(50),
   PRIMARY KEY (id)
 );
 
