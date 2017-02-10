@@ -39,6 +39,8 @@ app.get('/messagesByTopicID', messageController.getMessagesByTopicID);
 app.post('/postTopic', forumController.postNewTopic);
 app.post('/postMessage', messageController.postNewMessage);
 app.post('/setFavoriteGenre', routeHelpers.updatePreferredGenre);
+app.post('/setLeastFavoriteGenre', routeHelpers.updateLeastPreferredGenre);
 app.get('/getMessagesByTitle', messageController.getMessagesByTitle);
+
 
 module.exports = app;

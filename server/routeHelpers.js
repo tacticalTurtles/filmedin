@@ -10,11 +10,13 @@ module.exports = {
   },
   home: function (req, res, next) {
     auth.checkAuth(req, user => {
+      console.log('user', user)
       if (user !== null) {
         db.profile.getByUserID(user.id, (err, rows) => {
           if (err) {
             console.log('home -> profile.getByUserID', err);
           }
+          console.log(rows);
           var profile = rows[0];
           db.friend.get(profile.id, (err, rows) => {
             if (err) {
@@ -49,6 +51,7 @@ module.exports = {
   },
   profile: function (req, res, next) {
     auth.checkAuth(req, user => {
+      console.log('req params', req.params);
       if (user !== null) {
         db.profile.get(req.params.id, (err, rows) => {
           if (err) {
@@ -293,6 +296,14 @@ module.exports = {
   updatePreferredGenre: (req, res, next) => {
     const {category, id} = req.body;
     db.profile.updatePreferredGenre(category, id, (err, rows) => {
+      console.error(err);
+      res.send();
+    })
+  },
+
+  updateLeastPreferredGenre: (req, res, next) => {
+    const {category, id} = req.body;
+    db.profile.updateLeastPreferredGenre(category, id, (err, rows) => {
       console.error(err);
       res.send();
     })

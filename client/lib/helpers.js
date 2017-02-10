@@ -45,7 +45,7 @@ helpers.getFilm = function(id) {
 }
 
 helpers.getMovies = function() {
-  var url = 'http://data.tmsapi.com/v1.1/movies/showings?startDate=2017-02-08&zip=94030&imageSize=Sm&imageText=false&api_key=jpc43qej3q9yvtdy4urfh3rr'
+  var url = 'http://data.tmsapi.com/v1.1/movies/showings?startDate=2017-02-09&zip=94030&api_key=hrwx8yckjeehxpuxuy73qzqj'
   return axios.request(getRequest(url))
 }
 
@@ -126,9 +126,26 @@ helpers.getTopics = function () {
   });
 }
 
+helpers.postMessage = function(topicID, topicMessage, userID) {
+  return axios.request({
+  url: 'http://localhost:5000/postMessage',
+    method: 'POST',
+    headers: {
+      'x-access-token': window.localStorage.getItem('filmedInToken'),
+      'Content-Type': 'application/json; charset=utf-8',
+    },
+    data: {
+      topicID: topicID,
+      topicMessage: topicMessage,
+      userID: userID
+    }
+  });
+}
+
 helpers.setFavoriteGenre = (category, id) => {
   return axios.request({
     url: 'http://localhost:5000/setFavoriteGenre',
+    method: 'POST',
     data: {
       category: category,
       id: id
@@ -136,19 +153,14 @@ helpers.setFavoriteGenre = (category, id) => {
   });
 }
 
-helpers.postMessage = function(topicID, topicMessage, userID) {
+helpers.setLeastFavoriteGenre = (category, id) => {
   return axios.request({
-    url: 'http://localhost:5000/postMessage',
-      method: 'POST',
-      headers: {
-        'x-access-token': window.localStorage.getItem('filmedInToken'),
-        'Content-Type': 'application/json; charset=utf-8',
-      },
-      data: {
-        topicID: topicID,
-        topicMessage: topicMessage,
-        userID: userID
-      }
+    url: 'http://localhost:5000/setLeastFavoriteGenre',
+    method: 'POST',
+    data: {
+      category: category,
+      id: id
+    }
   });
 }
 
