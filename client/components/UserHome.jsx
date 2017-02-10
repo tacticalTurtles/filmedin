@@ -2,7 +2,7 @@ import React from 'react';
 import NavBar from './NavBar';
 import FilmList from './FilmList';
 import UserList from './UserList';
-import FeedList from './FeedList';s
+import FeedList from './FeedList';
 import Nowplaying from './Nowplaying';
 import _ from 'underscore';
 
