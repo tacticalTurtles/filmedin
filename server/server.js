@@ -20,7 +20,7 @@ var s3fsImplementation = new s3fs('Filmedin', {
   secretAcessKey: 'hfiZaAt1RPRkyZoMWE1JgpexSur7dAOStrFjRvMp' 
 });
 
-s3fsImplementation.create().then(() => console.log('hi')).catch((err) => console.error(err));
+// s3fsImplementation.create().then(() => console.log('hi')).catch((err) => console.error(err));
 
 app.use(multipartyMiddleware);
 app.use(cors());
@@ -31,19 +31,19 @@ app.post('/signin', auth.signin);
 app.post('/signup', auth.signup);
 app.post('/friend', routeHelpers.addFriend);
 app.post('/rating', routeHelpers.addRating);
-app.post('/testUpload', (req, res, next) => {
-  console.log(req.files);
-  const file = req.files.file;
-  var stream = fs.createReadStream(file.path);
-  return s3fsImplementation.writeFile(file.originalFilename, stream).then( ()=> {
-    fs.unlink(file.path, (err) => {
-      if (err) {
-        console.error(err);
-      }
-    })
-  }).catch((err) => console.error(err));
-  res.send();
-})
+// app.post('/testUpload', (req, res, next) => {
+//   console.log(req.files);
+//   const file = req.files.file;
+//   var stream = fs.createReadStream(file.path);
+//   return s3fsImplementation.writeFile(file.originalFilename, stream).then( ()=> {
+//     fs.unlink(file.path, (err) => {
+//       if (err) {
+//         console.error(err);
+//       }
+//     })
+//   }).catch((err) => console.error(err));
+//   res.send();
+// })
 
 app.get('/', routeHelpers.default);
 
