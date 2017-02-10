@@ -113,7 +113,10 @@ helpers.getUserIdByName = function(username) {
 }
 
 helpers.getMessagesByTopicId = function(topicId) {
-  /* TODO */
+  return axios({
+    method: 'get',
+    url: 'http://localhost:5000/getMessagesByTopicID'
+  })
 }
 
 helpers.getTopics = function () {

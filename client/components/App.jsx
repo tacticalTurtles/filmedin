@@ -52,7 +52,10 @@ class App extends React.Component {
     this.handleTopicClick = this.handleTopicClick.bind(this);
     this.handleDropDownPreferred = this.handleDropDownPreferred.bind(this);
     this.handleDropDownLeastPreferred = this.handleDropDownLeastPreferred.bind(this);
-
+    this.handleCreateTopicSubmit = this.handleCreateTopicSubmit.bind(this);
+    this.update = this.update.bind(this);
+    this.handleSubmitReply = this.handleSubmitReply.bind(this);
+    // this.handleThreadReply = this.handleThreadReply.bind(this);
   }
   componentWillMount () {
     this.getTopics();
@@ -60,6 +63,12 @@ class App extends React.Component {
       this.setState({isLoggedIn:true});
       this.handleHomeClick();
     }
+  }
+
+  update() {
+    console.log('are u updating');
+    this.getTopics();
+    this.forceUpdate();
   }
 
   addFriend(friend) {
@@ -100,16 +109,42 @@ class App extends React.Component {
     })
   }
 
+
+  handleCreateTopicSubmit() {
+    this.setState({
+      view: 'showForumView'
+    })
+  }
+
   handleCreateMessageClick() {
     this.setState({
       view: 'showCreateMessageView'
     })
   }
 
+  // updateThreadMessages(topicID) {
+  //   helpers.getMessagesByTopicId(topicID)
+  //     .then(resp => {
+  //       console.log('handleThreadReply resp', resp);
+  //       this.setState({
+  //         topicMessages: resp.data
+  //       })
+  //     })
+  //     .catch(err => {
+  //       console.log('Error: ', err);
+  //     })
+  // }
+
   handleSearchFilmClick(searchFilm) {
     this.setState({
       searchFilm: searchFilm,
       view: 'showSearchFilmView'
+    })
+  }
+
+  handleSubmitReply() {
+    this.setState({
+      view: 'showForumView'
     })
   }
 
@@ -278,7 +313,9 @@ class App extends React.Component {
                 />
             ) : (this.state.view === 'showCreateTopicView') ? (
                 <CreateTopic
-                  userID={this.state.userID}
+                  userID={this.state.profile.userID}
+                  handleCreateTopicSubmit={this.handleCreateTopicSubmit}
+                  update={this.update}
                 />
             ) : (this.state.view === 'showCreateMessageView') ? (
                 <CreateMessage
@@ -287,7 +324,10 @@ class App extends React.Component {
             ) : (this.state.view === 'showThreadView') ? (
                 <Thread
                   messages={this.state.topicMessages}
-                  userID={this.state.userID}
+                  userID={this.state.profile.userID}
+                  handleSubmitReply={this.handleSubmitReply}
+                  handleTopicClick={this.handleTopicClick}
+                  handleThreadReply={this.handleThreadReply}
                 />
             ) : (
                 <SearchUser

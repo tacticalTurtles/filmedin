@@ -12,7 +12,6 @@ class ReplyFieldGroup extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-
   onChange(e) {
     this.setState({
       [e.target.name]: e.target.value
@@ -25,6 +24,7 @@ class ReplyFieldGroup extends React.Component {
         console.log('Message Posted');
         console.log('Response: ', resp);
         // TO DO: Redirect to Thread Page with Updated Posts
+        this.props.handleSubmitReply();
       })
       .catch(err => {
         console.log('ERROR: ', err);
@@ -36,6 +36,7 @@ class ReplyFieldGroup extends React.Component {
     const { topicMessage } = this.state;
     const { topicID, userID } = this.props;
     this.postMessage(topicID, topicMessage, userID);
+    this.props.updateThreadMessages();
   }
 
   render() {
@@ -63,7 +64,8 @@ class ReplyFieldGroup extends React.Component {
 
 ReplyFieldGroup.propTypes = {
   topicID: React.PropTypes.number.isRequired,
-  userID: React.PropTypes.number.isRequired
+  userID: React.PropTypes.number.isRequired,
+  handleSubmitReply: React.PropTypes.func.isRequired
 }
 
 
