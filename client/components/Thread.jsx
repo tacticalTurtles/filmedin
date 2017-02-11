@@ -12,29 +12,38 @@ class Thread extends React.Component {
     this.getMessages = this.getMessages.bind(this);
   }
 
+  componentDidMount() {
+    this.getMessages();
+  }
+
   getMessages() {
-    helpers.getMessagesByTopicId(this.state.currentTopicID)
-      .then((resp) => {
+    helpers.getMessagesByTopicID(this.state.currentTopicID)
+      .then(resp => {
         var data = resp.data;
         return data;
       })
-      .then((data) => {
+      .then(data => {
         this.setState({
           threadMessages: data
         });
       })
+      .catch(err => {
+        console.log('Error: ', err);
+      })
   }
 
   render() {
+    console.log('thread state', this.state.currentTopicID)
     return (
       <div>
         <button
           onClick={this.props.setShowThreadListView}
-          className="btn btn-primary btn-lg btn-success"
+          className="btn btn-default btn-sm"
         >
           Back to List
         </button>
         {this.state.threadMessages.map((message, i) => {
+          var {dateAmerican, dateWords, timeWithTimeZone } = helpers.timestampParser(message.createdAt);
           return (
             <div
               key={i}
@@ -47,7 +56,7 @@ class Thread extends React.Component {
                 <blockquote>{message.message}</blockquote>
               </div>
               <div className="thread-post-message-details">
-                {message.createdAt}
+                {dateAmerican + ' @ ' + timeWithTimeZone}
               </div>
             </div>
           )
@@ -56,6 +65,7 @@ class Thread extends React.Component {
           topicID={this.props.threadMessages[0].topicID}
           userID={this.props.userID}
           getMessages={this.getMessages}
+          setShowThreadView={this.props.setShowThreadView}
         />
       </div>
     )
