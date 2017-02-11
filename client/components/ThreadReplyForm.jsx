@@ -36,9 +36,7 @@ class ThreadReplyForm extends React.Component {
     const { topicMessage } = this.state;
     const { topicID, userID } = this.props;
     this.postMessage(topicID, topicMessage, userID);
-    this.setState({
-      topicMessage: ''
-    })
+    this.setState({ topicMessage: '' });
   }
 
   render() {
