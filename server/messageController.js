@@ -5,6 +5,7 @@ module.exports = {
     // const { topicID, topicMessage, userID } = req.body;
     const queryStr = `insert into message (userID, topicID, message) values ('${res.body.userID}','${res.body.topicID}','${res.body.topicMessage}')`;
     db.query(queryStr, (err, data) => {
+      console.log(data);
       res.json(data);
     });
   },
