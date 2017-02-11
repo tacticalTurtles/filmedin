@@ -10,7 +10,7 @@ class CreateThread extends React.Component {
     return (
       <div>
         <button
-          className="btn btn-primary btn-lg btn-success"
+          className="btn btn-default btn-sm"
           onClick={this.props.setShowThreadListView}
         >
           Back to List
@@ -18,6 +18,7 @@ class CreateThread extends React.Component {
         <CreateThreadForm
           getTopics={this.props.getTopics}
           userID={this.props.userID}
+          getCurrentThread={this.props.getCurrentThread}
         />
       </div>
     )
