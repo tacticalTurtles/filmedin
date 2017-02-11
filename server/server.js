@@ -15,11 +15,11 @@ var multiparty = require('connect-multiparty');
 var multipartyMiddleware = multiparty();
 var path = require('path');
 
-var s3fsImplementation = new s3fs('Filmedin', {
-  region: 'us-west-2',
-  accessKeyId: 'AKIAJQLYVQD66SWEJHEQ',
-  secretAcessKey: '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' 
-});
+// var s3fsImplementation = new s3fs('Filmedin', {
+//   region: 'us-west-2',
+//   accessKeyId: 'AKIAJQLYVQD66SWEJHEQ',
+//   secretAcessKey: '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' 
+// });
 
 // s3fsImplementation.create().then(() => console.log('hi')).catch((err) => console.error(err));
 
