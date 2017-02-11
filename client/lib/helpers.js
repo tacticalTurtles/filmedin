@@ -129,22 +129,6 @@ helpers.getTopics = function () {
   });
 }
 
-helpers.postMessage = function(topicID, topicMessage, userID) {
-  return axios.request({
-  url: 'http://localhost:5000/postMessage',
-    method: 'POST',
-    headers: {
-      'x-access-token': window.localStorage.getItem('filmedInToken'),
-      'Content-Type': 'application/json; charset=utf-8',
-    },
-    data: {
-      topicID: topicID,
-      topicMessage: topicMessage,
-      userID: userID
-    }
-  });
-}
-
 helpers.setFavoriteGenre = (category, id) => {
   return axios.request({
     url: 'http://localhost:5000/setFavoriteGenre',

@@ -21,12 +21,16 @@ class Forum extends React.Component {
     this.getCurrentThread = this.getCurrentThread.bind(this);
   }
 
+  componentWillMount() {
+    this.getTopics();
+  }
+
   getTopics() {
     helpers.getTopics()
       .then(resp => {
         this.setState({
           topics: resp.data,
-        }, this.setShowThreadListView);
+        });
       })
       .catch(err => {
         console.log('ERROR: ', err);

@@ -32,7 +32,7 @@ class CreateThreadForm extends React.Component {
           .then(resp => {
             console.log('Message Posted');
             // TO DO: Redirect to Forum or the Same Thread (with new posts)
-            // this.props.getTopics();
+            this.props.getTopics();
             this.props.getCurrentThread(topicID);
           });
       })
