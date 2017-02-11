@@ -10,10 +10,10 @@ var cors = require('cors');
 var userController = require('./userController');
 var forumController = require('./forumController');
 var messageController = require('./messageController');
-var s3fs = require('s3fs');
+var path = require('path');
+// var s3fs = require('s3fs');
 var multiparty = require('connect-multiparty');
 var multipartyMiddleware = multiparty();
-var path = require('path');
 
 // var s3fsImplementation = new s3fs('Filmedin', {
 //   region: 'us-west-2',
