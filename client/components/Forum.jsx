@@ -18,6 +18,7 @@ class Forum extends React.Component {
     this.setShowThreadListView = this.setShowThreadListView.bind(this);
     this.setShowThreadView = this.setShowThreadView.bind(this);
     this.setShowCreateThreadView = this.setShowCreateThreadView.bind(this);
+    this.getCurrentThread = this.getCurrentThread.bind(this);
   }
 
   getTopics() {
@@ -30,6 +31,20 @@ class Forum extends React.Component {
       .catch(err => {
         console.log('ERROR: ', err);
       });
+  }
+
+  getCurrentThread(topicID) {
+    helpers.getMessagesByTopicID(topicID)
+      .then(resp => {
+        console.log('getCurrentThread', resp);
+        this.setState({ threadMessages: resp.data, currentTopicID: topicID, view: 'showThreadListView' })
+      })
+      .then(() => {
+        this.setState({ view: 'showThreadView' }, this.forceUpdate)
+      })
+      .catch(err => {
+        console.log('Error: ', err);
+      })
   }
 
   handleThreadEntryClick(title) {
@@ -79,6 +94,7 @@ class Forum extends React.Component {
           currentTopicID={this.state.currentTopicID}
           threadMessages={this.state.threadMessages}
           setShowThreadListView={this.setShowThreadListView}
+          setShowThreadView={this.setShowThreadView}
 
         />
       );
@@ -88,6 +104,7 @@ class Forum extends React.Component {
           userID={this.props.userID}
           getTopics={this.getTopics}
           setShowThreadListView={this.setShowThreadListView}
+          getCurrentThread={this.getCurrentThread}
         />
       )
     }
