@@ -179,7 +179,7 @@ helpers.getMessagesByTitle = function(title) {
   }); 
 }
 
-helpers.setProfilePicture = (image, id) {
+helpers.setProfilePicture = (image, id) => {
   return axios.request({
     url: 'https://filmedinjs.herokuapp.com/updateProfilePicture',
     method: 'POST',
