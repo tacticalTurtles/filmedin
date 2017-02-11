@@ -87,7 +87,7 @@ class Profile extends React.Component {
                 <MenuItem eventKey="thriller">Thriller</MenuItem>
               </DropdownButton>
             </ButtonToolbar>
-          </div>  
+          </div>
 
           <div className="genre-box">
             <h6 className="user-profile-genres-title">Your Least Preferred Genre</h6>
@@ -106,6 +106,22 @@ class Profile extends React.Component {
               </DropdownButton>
             </ButtonToolbar>
           </div>
+
+          <div className="genre-box">
+            <form action="http://filmed-in.s3.amazonaws.com/" method="post" enctype="multipart/form-data">
+              Key to upload:
+              <input type="input"  name="key" value={user.username} /><br />
+              <input type="hidden" name="acl" value="public-read" />
+              <input type="hidden" name="success_action_redirect" value="http://filmed-in.s3.amazonaws.com/successful_upload.html" />
+              Content-Type:
+              <input type="hidden"  name="Content-Type" value="image/jpeg" /><br />
+              <input type="hidden" name="x-amz-server-side-encryption" value="AES256" />
+              File:
+              <input type="file"   name="file" /> <br />
+              <input type="submit" name="submit" value="Upload to Amazon S3" />
+            </form>
+          </div>
+
         </div>
 
 
