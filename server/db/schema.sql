@@ -40,6 +40,7 @@ CREATE TABLE profile (
   createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   preferredGenre VARCHAR(50),
   leastPreferredGenre VARCHAR(50),
+  imageUrl VARCHAR(255),
   PRIMARY KEY (id)
 );
 

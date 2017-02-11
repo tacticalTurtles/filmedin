@@ -18,7 +18,7 @@ var multipartyMiddleware = multiparty();
 // var s3fsImplementation = new s3fs('Filmedin', {
 //   region: 'us-west-2',
 //   accessKeyId: 'AKIAJQLYVQD66SWEJHEQ',
-//   secretAcessKey: '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' 
+//   secretAcessKey: 'hfiZaAt1RPRkyZoMWE1JgpexSur7dAOStrFjRvMp'
 // });
 
 // s3fsImplementation.create().then(() => console.log('hi')).catch((err) => console.error(err));
@@ -69,6 +69,7 @@ app.post('/postMessage', messageController.postNewMessage);
 app.post('/setFavoriteGenre', routeHelpers.updatePreferredGenre);
 app.post('/setLeastFavoriteGenre', routeHelpers.updateLeastPreferredGenre);
 app.get('/getMessagesByTitle', messageController.getMessagesByTitle);
+app.post('/updateProfilePicture', routeHelpers.updateProfilePicture)
 
 
 module.exports = app;

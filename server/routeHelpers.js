@@ -306,6 +306,11 @@ module.exports = {
       console.error(err);
       res.send();
     })
+  },
+
+  updateProfilePicture: (req, res, next) => {
+    db.profile.updateProfilePicture( req.body.ProfilePicture, req.body.id, (err, rows) => {
+      res.send();
+    })
   }
 }
-
