@@ -310,7 +310,7 @@ module.exports = {
 
   updateProfilePicture: (req, res, next) => {
     console.log(req.body);
-    db.profile.updateProfilePicture( req.body.ProfilePicture, req.body.id, (err, rows) => {
+    db.profile.updateProfilePicture( req.body.profilePicture, req.body.id, (err, rows) => {
       res.send();
     })
   }
