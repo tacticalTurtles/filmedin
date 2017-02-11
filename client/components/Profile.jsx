@@ -45,13 +45,11 @@ class Profile extends React.Component {
 
   render() {
     const {user, handleFilmClick, handleUserClick, addFriend, handleDropDownPreferred, handleDropDownLeastPreferred} = this.props;
-    console.log('image url', this.state.imageUrl)
     return (
       <div className="user-profile">
-        {console.log(Object.keys(user))}
         <div className="user-left-panel" >
           <div className="user-profile-info">
-            <img src={this.state.profilePicture} />
+            <img className='profilePicture' src={this.state.profilePicture} />
             <h4 className="user-profile-username">@{user.username}</h4>
             <h1>{user.firstName} {user.lastName}</h1>
             <div onClick={() => { !user.isFriend ? addFriend(user) : console.log('Already friends')}} className='friendStat-profile'>

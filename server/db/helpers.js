@@ -28,6 +28,7 @@ var dbObj =  {
       db.query(`UPDATE profile SET profileURL = ? WHERE id = ?`, [url, id], cb);
     },
     updateProfilePicture: (imageUrl, id, cb) => {
+      console.log('imageUrl', imageUrl)
       db.query('update profile SET imageUrl = ? where id = ?', [imageUrl, id], cb);
     },
     updatePreferredGenre: (category, id, cb) => {
