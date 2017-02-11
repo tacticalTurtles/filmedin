@@ -33,7 +33,16 @@ class Thread extends React.Component {
   }
 
   render() {
-    console.log('thread state', this.state.currentTopicID)
+    var messages = this.state.threadMessages.map((message, i) => {
+      var {dateAmerican, dateWords, timeWithTimeZone } = helpers.timestampParser(message.createdAt);
+      return (
+        <tr>
+          <th>{message.username}: {message.message}</th>
+          <th>{dateAmerican + ' @ ' + timeWithTimeZone}</th>
+        </tr>
+      )
+    })
+
     return (
       <div>
         <button
@@ -42,25 +51,16 @@ class Thread extends React.Component {
         >
           Back to List
         </button>
-        {this.state.threadMessages.map((message, i) => {
-          var {dateAmerican, dateWords, timeWithTimeZone } = helpers.timestampParser(message.createdAt);
-          return (
-            <div
-              key={i}
-              className="thread-post"
-            >
-              <div className="thread-post-user-info">
-                {message.username}
-              </div>
-              <div className="thread-post-message">
-                <blockquote>{message.message}</blockquote>
-              </div>
-              <div className="thread-post-message-details">
-                {dateAmerican + ' @ ' + timeWithTimeZone}
-              </div>
-            </div>
-          )
-        })}
+
+        <table className="table">
+          <tbody>
+          <tr>
+            <th className="col-md-8">Message</th>
+            <th>Created At</th>
+          </tr>
+          {messages}
+          </tbody>
+        </table>
         <ThreadReplyForm
           topicID={this.props.threadMessages[0].topicID}
           userID={this.props.userID}
@@ -80,3 +80,22 @@ Thread.propTypes = {
 }
 
 export default Thread;
+        // {this.state.threadMessages.map((message, i) => {
+        //   var {dateAmerican, dateWords, timeWithTimeZone } = helpers.timestampParser(message.createdAt);
+        //   return (
+        //     <div
+        //       key={i}
+        //       className="thread-post col-md-8 offset-md-2"
+        //     >
+        //       <div className="thread-post-user-info col-md-2 offset-md-2">
+        //         {message.username}
+        //       </div>
+        //       <div className="thread-post-message col-md-6 offset-md-4">
+        //         <blockquote>{message.message}</blockquote>
+        //       </div>
+        //       <div className="thread-post-message-details col-md-6 offset-md-4">
+        //         {dateAmerican + ' @ ' + timeWithTimeZone}
+        //       </div>
+        //     </div>
+        //   )
+        // })}
