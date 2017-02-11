@@ -299,8 +299,8 @@ module.exports = {
   },
 
   updateLeastPreferredGenre: (req, res, next) => {
-    const {category, id} = req.body;
-    db.profile.updateLeastPreferredGenre(category, id, (err, rows) => {
+    // const {category, id} = req.body;
+    db.profile.updateLeastPreferredGenre(req.body.category, req.body.id, (err, rows) => {
       console.error(err);
       res.send();
     })
