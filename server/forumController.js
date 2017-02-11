@@ -15,5 +15,12 @@ module.exports = {
     db.query(queryStr, (err, data) => {
       res.json(data);
     });
+  },
+
+  getTopicByTopicID: (req, res, next) => {
+    const queryStr = `select topic from topic where id = '${req.query.topicID}'`
+    db.query(queryStr, (err, data) => {
+      res.json(data);
+    });
   }
 }

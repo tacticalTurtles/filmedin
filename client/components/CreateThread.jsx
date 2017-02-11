@@ -8,18 +8,22 @@ class CreateThread extends React.Component {
 
   render() {
     return (
-      <div>
-        <button
-          className="btn btn-default btn-sm"
-          onClick={this.props.setShowThreadListView}
-        >
-          Back to List
-        </button>
-        <CreateThreadForm
-          getTopics={this.props.getTopics}
-          userID={this.props.userID}
-          getCurrentThread={this.props.getCurrentThread}
-        />
+      <div className="container">
+        <div className="col-md-12">
+          <button
+            className="btn btn-default btn-sm"
+            onClick={this.props.setShowThreadListView}
+          >
+            Back to List
+          </button>
+        </div>
+        <div className="col-md-10 offset-md-2">
+          <CreateThreadForm
+            getTopics={this.props.getTopics}
+            userID={this.props.userID}
+            getCurrentThread={this.props.getCurrentThread}
+          />
+        </div>
       </div>
     )
   }

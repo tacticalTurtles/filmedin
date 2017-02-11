@@ -38,22 +38,25 @@ class ThreadList extends React.Component {
     });
 
     return (
-      <div className="thread-list">
-        <button
-          className="btn btn-primary btn-lg"
-          onClick={this.props.setShowCreateThreadView}
-        >
-          Create New Thread
-        </button>
-        <table className="table">
-          <tbody>
-            <tr>
-              <th><h4><strong>Topic Title</strong></h4></th>
-              <th><h4><strong>Created At</strong></h4></th>
-            </tr>
-            { threads }
-          </tbody>
-        </table>
+      <div className="container">
+        <div className="thread-list">
+          <button
+            className="btn btn-primary btn-md"
+            onClick={this.props.setShowCreateThreadView}
+            style={{ 'float': 'right' }}
+          >
+            Create New Thread
+          </button>
+          <table className="table">
+            <tbody>
+              <tr>
+                <th><h4><strong>Topic Title</strong></h4></th>
+                <th><h4><strong>Created At</strong></h4></th>
+              </tr>
+              { threads }
+            </tbody>
+          </table>
+        </div>
       </div>
     )
   }
