@@ -291,8 +291,8 @@ module.exports = {
   },
 
   updatePreferredGenre: (req, res, next) => {
-    const {category, id} = req.body;
-    db.profile.updatePreferredGenre(category, id, (err, rows) => {
+    // const {category, id} = req.body;
+    db.profile.updatePreferredGenre(req.body.category, req.body.id, (err, rows) => {
       console.error(err);
       res.send();
     })
