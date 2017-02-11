@@ -9,7 +9,7 @@ var getRequest = function (url) {
 
     },
     url: url,
-    baseURL: 'https://filmedinjs.herokuapp.com/',
+    baseURL: 'http://localhost:5000/',
     method: 'GET'
   }
   return request;
@@ -19,14 +19,14 @@ var helpers = {};
 
 helpers.logInUser = function(data) {
   return axios.request({
-    url: 'https://filmedinjs.herokuapp.com/signin',
+    url: 'http://localhost:5000/signin',
     method: 'POST',
     data: data
   });
 }
 helpers.signUpUser = function(data) {
   return axios.request({
-    url: 'https://filmedinjs.herokuapp.com/signup',
+    url: 'http://localhost:5000/signup',
     method: 'POST',
     data: data
   });
@@ -57,7 +57,7 @@ helpers.searchFilm = function(search) {
 }
 helpers.addFriend = function(friendID) {
   return axios.request({
-    url: 'https://filmedinjs.herokuapp.com/friend',
+    url: 'http://localhost:5000/friend',
     method: 'POST',
     headers: {
       'x-access-token': window.localStorage.getItem('filmedInToken'),
@@ -70,7 +70,7 @@ helpers.addFriend = function(friendID) {
 }
 helpers.addRating = function(filmID, rating, review) {
   return axios.request({
-    url: 'https://filmedinjs.herokuapp.com/rating',
+    url: 'http://localhost:5000/rating',
     method: 'POST',
     headers: {
       'x-access-token': window.localStorage.getItem('filmedInToken'),
@@ -105,7 +105,7 @@ helpers.dateDiff = function(date) {
 helpers.getUserIdByName = function(username) {
   return axios({
     method: 'get',
-    url: 'https://filmedinjs.herokuapp.com/users',
+    url: 'http://localhost:5000/users',
     params: {
       username: username
     }
@@ -115,7 +115,7 @@ helpers.getUserIdByName = function(username) {
 helpers.getMessagesByTopicID = function(topicID) {
   return axios({
     method: 'get',
-    url: 'https://filmedinjs.herokuapp.com/getMessagesByTopicID',
+    url: 'http://localhost:5000/getMessagesByTopicID',
     params: {
       topicID: topicID
     }
@@ -125,23 +125,7 @@ helpers.getMessagesByTopicID = function(topicID) {
 helpers.getTopics = function () {
   return axios({
     method: 'get',
-    url: 'https://filmedinjs.herokuapp.com/topics'
-  });
-}
-
-helpers.postMessage = function(topicID, topicMessage, userID) {
-  return axios.request({
-  url: 'https://filmedinjs.herokuapp.com/postMessage',
-    method: 'POST',
-    headers: {
-      'x-access-token': window.localStorage.getItem('filmedInToken'),
-      'Content-Type': 'application/json; charset=utf-8',
-    },
-    data: {
-      topicID: topicID,
-      topicMessage: topicMessage,
-      userID: userID
-    }
+    url: 'http://localhost:5000/topics'
   });
 }
 
@@ -163,7 +147,7 @@ helpers.postMessage = function(topicID, topicMessage, userID) {
 
 helpers.setFavoriteGenre = (category, id) => {
   return axios.request({
-    url: 'https://filmedinjs.herokuapp.com/setFavoriteGenre',
+    url: 'http://localhost:5000/setFavoriteGenre',
     method: 'POST',
     data: {
       category: category,
@@ -174,7 +158,7 @@ helpers.setFavoriteGenre = (category, id) => {
 
 helpers.setLeastFavoriteGenre = (category, id) => {
   return axios.request({
-    url: 'https://filmedinjs.herokuapp.com/setLeastFavoriteGenre',
+    url: 'http://localhost:5000/setLeastFavoriteGenre',
     method: 'POST',
     data: {
       category: category,
@@ -185,7 +169,7 @@ helpers.setLeastFavoriteGenre = (category, id) => {
 
 helpers.postNewTopic = function(topicName) {
   return axios.request({
-  url: 'https://filmedinjs.herokuapp.com/postTopic',
+  url: 'http://localhost:5000/postTopic',
     method: 'POST',
     headers: {
       'x-access-token': window.localStorage.getItem('filmedInToken'),
@@ -199,7 +183,7 @@ helpers.postNewTopic = function(topicName) {
 
 helpers.getMessagesByTitle = function(title) {
   return axios.request({
-    url: 'https://filmedinjs.herokuapp.com/getMessagesByTitle',
+    url: 'http://localhost:5000/getMessagesByTitle',
     method: 'GET',
     headers: {
       'x-access-token': window.localStorage.getItem('filmedInToken'),
