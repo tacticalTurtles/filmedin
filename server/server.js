@@ -13,6 +13,7 @@ var messageController = require('./messageController');
 var s3fs = require('s3fs');
 var multiparty = require('connect-multiparty');
 var multipartyMiddleware = multiparty();
+var path = require('path');
 
 var s3fsImplementation = new s3fs('Filmedin', {
   region: 'us-west-2',
@@ -44,8 +45,9 @@ app.post('/rating', routeHelpers.addRating);
 //   }).catch((err) => console.error(err));
 //   res.send();
 // })
-
-app.get('/', routeHelpers.default);
+const indexPath = path.join(__dirname, '/../client/index.html')
+const publicPath = express.static(path.join(__dirname, '../client'))
+app.get('/', (_, res) =>  res.sendFile(indexPath) );
 
 app.get('/home', routeHelpers.home);
     //send overall /recs

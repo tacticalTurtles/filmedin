@@ -4,6 +4,8 @@ var gb = require('./guideBoxHelpers');
 var qs = require('querystring');
 var rec = require('./recHelpers');
 var _  = require('underscore');
+const path = require('path')
+
 module.exports = {
   default: function(req, res, next) {
     res.end();
@@ -306,3 +308,4 @@ module.exports = {
     })
   }
 }
+
