@@ -112,7 +112,7 @@ helpers.getUserIdByName = function(username) {
   });
 }
 
-helpers.getMessagesByTopicId = function(topicID) {
+helpers.getMessagesByTopicID = function(topicID) {
   return axios({
     method: 'get',
     url: 'https://filmedinjs.herokuapp.com/getMessagesByTopicID',
@@ -208,7 +208,48 @@ helpers.getMessagesByTitle = function(title) {
     params: {
       title: title
     }
-  });
+  }); 
 }
+
+helpers.timestampParser = (timestamp) => {
+  var months = {
+    1: 'January',
+    2: 'February',
+    3: 'March',
+    4: 'April',
+    5: 'May',
+    6: 'June',
+    7: 'July',
+    8: 'August',
+    9: 'September',
+    10: 'October',
+    11: 'November',
+    12: 'December'
+  };
+
+  var date = timestamp.slice(0,10).split('-');
+  var dateAmerican = date[1] + '/' + date[2] + '/' + date[0];
+  var dateWords = months[Number(date[1])] + ' ' + date[2] + ', ' + date[0];
+
+  var time = timestamp.slice(11,16).split(':');
+  // time[0] = (Number(time[0]) - 8).toString();
+  var timeWithTimeZone = '';
+
+  if (Number(time[0]) > 12) {
+    timeWithTimeZone = ((Number(time[0]) - 12).toString() + ':' + time[1] + 'PM');
+  } else if (Number(time[0]) === 12) {
+    timeWithTimeZone = (time[0] + ':' + time[1] + 'PM');
+  } else if (Number(time[0]) === 0) {
+    timeWithTimeZone = ('12:' + time[1] + 'AM');
+  } else {
+    timeWithTimeZone = (time[0] + ':' + time[1] + 'AM');
+  }
+
+  return {
+    dateAmerican: dateAmerican,
+    dateWords: dateWords,
+    timeWithTimeZone: timeWithTimeZone
+  }
+};
 
 export default helpers
