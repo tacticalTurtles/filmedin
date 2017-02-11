@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import helpers from '../lib/helpers';
 
 class ThreadList extends React.Component {
   constructor(props) {
@@ -26,11 +27,12 @@ class ThreadList extends React.Component {
   render() {
     const { threadTopics } = this.props;
     var threads = threadTopics.map((thread, i) => {
+      var {dateAmerican, dateWords, timeWithTimeZone } = helpers.timestampParser(thread.createdAt);
+
       return (
         <tr key={i} value={thread.topic}>
           <th className="thread">{thread.topic}</th>
-          <th>{thread.createdAt}</th>
-          <th>{thread.updatedAt}</th>
+          <th>{dateAmerican + ' @ ' + timeWithTimeZone}</th>
         </tr>
       )
     });
@@ -38,7 +40,7 @@ class ThreadList extends React.Component {
     return (
       <div className="thread-list">
         <button
-          className="btn btn-primary btn-lg btn-success"
+          className="btn btn-primary btn-lg"
           onClick={this.props.setShowCreateThreadView}
         >
           Create New Thread
@@ -46,9 +48,8 @@ class ThreadList extends React.Component {
         <table className="table">
           <tbody>
             <tr>
-              <th>Topic Title</th>
-              <th>Created At</th>
-              <th>Last Post</th>
+              <th><h4><strong>Topic Title</strong></h4></th>
+              <th><h4><strong>Created At</strong></h4></th>
             </tr>
             { threads }
           </tbody>
