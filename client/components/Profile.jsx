@@ -20,8 +20,9 @@ class Profile extends React.Component {
   }
 
   handleProfilePictureChange() {
-    const {user} = this.props;
+    const {user, setProfilePicture} = this.props;
     setTimeout( () => {
+      setProfilePicture(`http://filmed-in.s3.amazonaws.com/${user.username}`)
       this.setState({
         profilePicture: `http://filmed-in.s3.amazonaws.com/${user.username}`
       })
@@ -44,6 +45,7 @@ class Profile extends React.Component {
 
   render() {
     const {user, handleFilmClick, handleUserClick, addFriend, handleDropDownPreferred, handleDropDownLeastPreferred} = this.props;
+    console.log('image url', this.state.imageUrl)
     return (
       <div className="user-profile">
         {console.log(Object.keys(user))}

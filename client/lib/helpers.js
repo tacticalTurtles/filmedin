@@ -179,6 +179,20 @@ helpers.getMessagesByTitle = function(title) {
   }); 
 }
 
+helpers.setProfilePicture = (image, id) {
+  return axios.request({
+    url: 'https://filmedinjs.herokuapp.com/updateProfilePicture',
+    method: 'POST',
+    headers: {
+      'x-access-token': window.localStorage.getItem('filmedInToken'),
+      'Content-Type': 'application/json; charset=utf-8',
+    },
+    data: {
+      profilePicture: image,
+      id: id
+    }
+  })
+}
 helpers.timestampParser = (timestamp) => {
   var months = {
     1: 'January',
