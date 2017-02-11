@@ -45,8 +45,8 @@ app.post('/rating', routeHelpers.addRating);
 //   }).catch((err) => console.error(err));
 //   res.send();
 // })
-const indexPath = path.join(__dirname, '/../client/index.html')
-const publicPath = express.static(path.resolve(__dirname, '../client'))
+const indexPath = path.join(__dirname, '/../public/index.html')
+const publicPath = express.static(path.resolve(__dirname, '../public'))
 app.get('/', (_, res) =>  res.sendFile(indexPath) );
 
 app.get('/home', routeHelpers.home);
