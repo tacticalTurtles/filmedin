@@ -1,7 +1,7 @@
 var _ = require ('underscore');
 
 module.exports = {
-	generateAllFriendsRecs: function (myFilmRatings, friendsFilmRatings) {
+  generateAllFriendsRecs: function (myFilmRatings, friendsFilmRatings) {
 
 
     //helper functions to retreive film and rank for one friend
@@ -53,5 +53,5 @@ module.exports = {
 
     return recommendedFilms;
 
-	}
+  }
 }
