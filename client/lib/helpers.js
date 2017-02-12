@@ -167,7 +167,7 @@ helpers.setLeastFavoriteGenre = (category, id) => {
   });
 }
 
-helpers.postNewTopic = function(topicName) {
+helpers.postNewTopic = function(topicName, username) {
   return axios.request({
   url: 'http://localhost:5000/postTopic',
     method: 'POST',
@@ -176,7 +176,8 @@ helpers.postNewTopic = function(topicName) {
       'Content-Type': 'application/json; charset=utf-8',
     },
     data: {
-      topicName: topicName
+      topicName: topicName,
+      username: username
     }
   });
 }

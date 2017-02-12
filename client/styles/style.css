@@ -819,3 +819,11 @@ margin-left: 50px;
   width: 100%;
   height: 100%;
 }
+
+.threadTopic, .threadDate {
+  border: .5px dotted black;
+}
+
+.topicTitle, .createdAt {
+  border: .5px solid gray;
+}

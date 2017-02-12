@@ -11,7 +11,8 @@ module.exports = {
 
   postNewTopic: (req, res, next) => {
     const topicName = req.body.topicName;
-    const queryStr = `insert into topic (topic) values ('${topicName}')`;
+    const username = req.body.username;
+    const queryStr = `insert into topic (topic, username) values ('${topicName}', '${username}')`;
     db.query(queryStr, (err, data) => {
       res.json(data);
     });

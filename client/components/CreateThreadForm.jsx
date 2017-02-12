@@ -18,13 +18,13 @@ class CreateThreadForm extends React.Component {
     this.setState({
       [e.target.name]: e.target.value
     });
-  }
+  } 
 
-  postNewTopic(topicName, topicMessage, userID) {
-    helpers.postNewTopic(topicName)
+  postNewTopic(topicName, topicMessage, userID, username) {
+    helpers.postNewTopic(topicName, this.props.username)
       .then(resp => {
         const topicID = resp.data.insertId;
-        console.log('Response: ', resp);
+        console.log('PostNewTopic: ', resp);
         return topicID;
       })
       .then(topicID => {

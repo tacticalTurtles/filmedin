@@ -46,6 +46,7 @@ class Thread extends React.Component {
   }
 
   render() {
+    console.log('this state threadmessage', this.state.threadMessages);
     var messages = this.state.threadMessages.map((message, i) => {
       var {dateAmerican, dateWords, timeWithTimeZone } = helpers.timestampParser(message.createdAt);
         if (i === 0) {
