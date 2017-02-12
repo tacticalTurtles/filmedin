@@ -69,7 +69,7 @@ app.post('/postMessage', messageController.postNewMessage);
 app.post('/setFavoriteGenre', routeHelpers.updatePreferredGenre);
 app.post('/setLeastFavoriteGenre', routeHelpers.updateLeastPreferredGenre);
 app.get('/getMessagesByTitle', messageController.getMessagesByTitle);
-app.post('/updateProfilePicture', routeHelpers.updateProfilePicture)
-
+app.get('/getTopicByTopicID', forumController.getTopicByTopicID);
+app.post('/updateProfilePicture', routeHelpers.updateProfilePicture);
 
 module.exports = app;

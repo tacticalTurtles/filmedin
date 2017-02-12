@@ -28,8 +28,9 @@ class Forum extends React.Component {
   getTopics() {
     helpers.getTopics()
       .then(resp => {
+        var topics = resp.data.reverse();
         this.setState({
-          topics: resp.data,
+          topics: topics
         });
       })
       .catch(err => {
@@ -52,8 +53,10 @@ class Forum extends React.Component {
   }
 
   handleThreadEntryClick(title) {
+    console.log('title', title);
     helpers.getMessagesByTitle(title)
       .then(resp => {
+        console.log('resp', resp);
         this.setState({
           threadMessages: resp.data,
           currentTopicID: resp.data[0].topicID
@@ -109,6 +112,7 @@ class Forum extends React.Component {
           getTopics={this.getTopics}
           setShowThreadListView={this.setShowThreadListView}
           getCurrentThread={this.getCurrentThread}
+          username={this.props.username}
         />
       )
     }

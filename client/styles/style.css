@@ -160,7 +160,7 @@ body {
 
 }
 .nav-bar-hover:hover {
-  background-color: #91b6f2;
+  background-color: silver;
 
 }
 .nav-bar-right {
@@ -822,4 +822,12 @@ margin-left: 50px;
 .movie-img {
   width: 100%;
   height: 100%;
+}
+
+.threadTopic, .threadDate {
+  border: .5px dotted black;
+}
+
+.topicTitle, .createdAt {
+  border: .5px solid gray;
 }

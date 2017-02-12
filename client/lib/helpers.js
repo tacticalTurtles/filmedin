@@ -151,7 +151,7 @@ helpers.setLeastFavoriteGenre = (category, id) => {
   });
 }
 
-helpers.postNewTopic = function(topicName) {
+helpers.postNewTopic = function(topicName, username) {
   return axios.request({
   url: 'https://filmedinjs.herokuapp.com/postTopic',
     method: 'POST',
@@ -160,7 +160,8 @@ helpers.postNewTopic = function(topicName) {
       'Content-Type': 'application/json; charset=utf-8',
     },
     data: {
-      topicName: topicName
+      topicName: topicName,
+      username: username
     }
   });
 }
@@ -179,6 +180,16 @@ helpers.getMessagesByTitle = function(title) {
   }); 
 }
 
+helpers.getTopicByTopicID = function(topicID) {
+  return axios.request({
+    url: 'http://localhost:5000/getTopicByTopicID',
+    method: 'GET',
+    params: {
+      topicID: topicID
+    }
+  }); 
+}
+    
 helpers.setProfilePicture = (image, id) => {
   return axios.request({
     url: 'https://filmedinjs.herokuapp.com/updateProfilePicture',
@@ -193,6 +204,7 @@ helpers.setProfilePicture = (image, id) => {
     }
   })
 }
+
 helpers.timestampParser = (timestamp) => {
   var months = {
     1: 'January',
@@ -214,7 +226,10 @@ helpers.timestampParser = (timestamp) => {
   var dateWords = months[Number(date[1])] + ' ' + date[2] + ', ' + date[0];
 
   var time = timestamp.slice(11,16).split(':');
-  // time[0] = (Number(time[0]) - 8).toString();
+  time[0] = (Number(time[0]) - 8).toString();
+  if (Number(time[0]) < 0) {
+    time[0] = (24 + Number(time[0])).toString();
+  }
   var timeWithTimeZone = '';
 
   if (Number(time[0]) > 12) {

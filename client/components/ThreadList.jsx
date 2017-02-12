@@ -31,29 +31,34 @@ class ThreadList extends React.Component {
 
       return (
         <tr key={i} value={thread.topic}>
-          <th className="thread">{thread.topic}</th>
-          <th>{dateAmerican + ' @ ' + timeWithTimeZone}</th>
+          <th className="thread" style={{'border': '.5px dotted black'}}><a href="#">{thread.topic}</a></th>
+          <th style={{'border': '.5px dotted black'}}>{thread.username}</th>
+          <th style={{'border': '.5px dotted black'}}>{dateAmerican + ' @ ' + timeWithTimeZone}</th>
         </tr>
       )
     });
 
     return (
-      <div className="thread-list">
-        <button
-          className="btn btn-primary btn-lg"
-          onClick={this.props.setShowCreateThreadView}
-        >
-          Create New Thread
-        </button>
-        <table className="table">
-          <tbody>
-            <tr>
-              <th><h4><strong>Topic Title</strong></h4></th>
-              <th><h4><strong>Created At</strong></h4></th>
-            </tr>
-            { threads }
-          </tbody>
-        </table>
+      <div className="container">
+        <div className="thread-list">
+          <button
+            className="btn btn-primary btn-md"
+            onClick={this.props.setShowCreateThreadView}
+            style={{ 'float': 'right' }}
+          >
+            Create New Thread
+          </button>
+          <table className="table">
+            <tbody>
+              <tr>
+                <th width="70%" style={{'border': '.5px solid black'}}><h4><strong>Topic Title</strong></h4></th>
+                <th width="15%" style={{'border': '.5px solid black'}}><h4><strong>Author</strong></h4></th>
+                <th width="15%" style={{'border': '.5px solid black'}}><h4><strong>Created At</strong></h4></th>
+              </tr>
+              { threads }
+            </tbody>
+          </table>
+        </div>
       </div>
     )
   }
