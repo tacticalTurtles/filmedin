@@ -84,7 +84,7 @@ class App extends React.Component {
 
   setProfilePicture(image) {
     helpers.setProfilePicture(image, this.state.profile.id).then( () => {
-      console.log('sent!');
+      this.forceUpdate();
     });
   }
   rateFilm(rating, filmid) {
