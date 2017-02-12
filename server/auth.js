@@ -60,9 +60,13 @@ module.exports = {
                     } else if (rows.length === 0) {
                       next(new Error('User does not exist'));
                     } else {
-                      var user = rows[0];
-                      var token = jwt.encode(user, 'secret');
-                      res.json({token: token});
+                      if (rows){ 
+                        var user = rows[0];
+                        var token = jwt.encode(user, 'secret');
+                        res.json({token: token});
+                      } else {
+                        res.json({token: ('temp', 'secret')});
+                      }
                     }
                   });
                 });
@@ -84,7 +88,7 @@ module.exports = {
     if ((token !== undefined) && (token !== 'undefined')) {
       var user = jwt.decode(token, 'secret');
       db.user.get(user.username, function (err, rows) {
-        if (rows.length === 1) {
+        if (rows && rows.length === 1) {
           cb(rows[0]);
         } else {
           cb(null);
