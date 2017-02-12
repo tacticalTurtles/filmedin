@@ -23,6 +23,7 @@ class CreateThread extends React.Component {
             userID={this.props.userID}
             getCurrentThread={this.props.getCurrentThread}
             username={this.props.username}
+            picture={this.props.imageUrl}
           />
         </div>
       </div>

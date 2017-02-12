@@ -59,7 +59,7 @@ class Forum extends React.Component {
         console.log('resp', resp);
         this.setState({
           threadMessages: resp.data,
-          currentTopicID: resp.data[0].topicID
+          currentTopicID: resp.data[0].topicID,
         }, this.setShowThreadView);
       })
       .catch(err => {
@@ -92,6 +92,7 @@ class Forum extends React.Component {
           threadTopics={this.state.topics}
           handleThreadEntryClick={this.handleThreadEntryClick}
           setShowCreateThreadView={this.setShowCreateThreadView}
+          profile={this.props.profile}
         />
       );
     } else if (this.state.view === 'showThreadView') {
@@ -102,7 +103,7 @@ class Forum extends React.Component {
           threadMessages={this.state.threadMessages}
           setShowThreadListView={this.setShowThreadListView}
           setShowThreadView={this.setShowThreadView}
-
+          profile={this.props.profile}
         />
       );
     } else if (this.state.view === 'showCreateThreadView') {

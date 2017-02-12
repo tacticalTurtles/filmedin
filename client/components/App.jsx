@@ -243,6 +243,7 @@ class App extends React.Component {
                   topics={this.state.topics}
                   userID={this.state.profile.userID}
                   username={this.state.profile.username}
+                  profile = {this.state.profile}
                 />
             ) : (this.state.view === 'showProfileView') ? (
                 <Profile
