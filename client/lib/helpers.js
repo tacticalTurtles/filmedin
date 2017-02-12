@@ -198,7 +198,7 @@ helpers.getMessagesByTitle = function(title) {
 
 helpers.getTopicByTopicID = function(topicID) {
   return axios.request({
-    url: 'http://localhost:5000/getTopicByTopicID',
+    url: 'https://filmedinjs.herokuapp.com/getTopicByTopicID',
     method: 'GET',
     params: {
       topicID: topicID
