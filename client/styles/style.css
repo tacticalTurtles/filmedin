@@ -30,6 +30,14 @@ body {
   height: 40%;
   width: 40%;
 }
+
+.messageTime {
+  font-size: 9px;
+}
+.profilePictureThread {
+  height: 80px;
+  width: 80px;
+}
 .logo-home {
   top:8px;
   left:3px;
