@@ -6,10 +6,12 @@ CREATE DATABASE filmedin;
 USE filmedin;
 -- USE heroku_52b4a7557cf5bb8;
 
+DROP TABLE IF EXISTS message;
 DROP TABLE IF EXISTS rating;
 DROP TABLE IF EXISTS friends;
 DROP TABLE IF EXISTS film;
 DROP TABLE IF EXISTS profile;
+DROP TABLE IF EXISTS topic;
 DROP TABLE IF EXISTS user;
 
 CREATE TABLE user (
@@ -38,6 +40,7 @@ CREATE TABLE profile (
   createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   preferredGenre VARCHAR(50),
   leastPreferredGenre VARCHAR(50),
+  imageUrl VARCHAR(255),
   PRIMARY KEY (id)
 );
 

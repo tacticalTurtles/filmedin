@@ -46,8 +46,9 @@ class App extends React.Component {
     this.handleProfileClick = this.handleProfileClick.bind(this);
     this.handleDropDownPreferred = this.handleDropDownPreferred.bind(this);
     this.handleDropDownLeastPreferred = this.handleDropDownLeastPreferred.bind(this);
-
+    this.setProfilePicture = this.setProfilePicture.bind(this);
   }
+
   componentWillMount () {
     this.getTopics();
     if (window.localStorage.getItem('filmedInToken')) {
@@ -81,6 +82,11 @@ class App extends React.Component {
     })
   }
 
+  setProfilePicture(image) {
+    helpers.setProfilePicture(image, this.state.profile.id).then( () => {
+      this.forceUpdate();
+    });
+  }
   rateFilm(rating, filmid) {
     helpers.addRating(filmid, rating, '').then(response => {
       console.log('Rated Film ', rating);
@@ -246,6 +252,7 @@ class App extends React.Component {
                   handleDropDownPreferred={this.handleDropDownPreferred}
                   handleDropDownLeastPreferred={this.handleDropDownLeastPreferred}
                   addFriend={this.addFriend}
+                  setProfilePicture={this.setProfilePicture}
                 />
             ) : (
                 <SearchUser

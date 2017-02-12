@@ -4,6 +4,8 @@ var gb = require('./guideBoxHelpers');
 var qs = require('querystring');
 var rec = require('./recHelpers');
 var _  = require('underscore');
+const path = require('path')
+
 module.exports = {
   default: function(req, res, next) {
     res.end();
@@ -299,9 +301,16 @@ module.exports = {
   },
 
   updateLeastPreferredGenre: (req, res, next) => {
-    const {category, id} = req.body;
-    db.profile.updateLeastPreferredGenre(category, id, (err, rows) => {
+    // const {category, id} = req.body;
+    db.profile.updateLeastPreferredGenre(req.body.category, req.body.id, (err, rows) => {
       console.error(err);
+      res.send();
+    })
+  },
+
+  updateProfilePicture: (req, res, next) => {
+    console.log(req.body);
+    db.profile.updateProfilePicture( req.body.profilePicture, req.body.id, (err, rows) => {
       res.send();
     })
   }

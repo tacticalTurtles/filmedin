@@ -22,19 +22,19 @@ var dbObj =  {
       db.query(`SELECT p.*, u.username FROM profile p INNER JOIN user u on p.userID = u.id WHERE userID = ${userID}`, cb);
     },
     post: function (prof, cb) {
-      db.query(`INSERT INTO profile (userID, firstName, lastName, DOB, email) VALUES (${prof.userID}, "${prof.firstName}", "${prof.lastName}", "${prof.DOB}", "${prof.email}")`, cb);
+      db.query(`INSERT INTO profile (userID, firstName, lastName, DOB, email, imageUrl) VALUES (${prof.userID}, "${prof.firstName}", "${prof.lastName}", "${prof.DOB}", "${prof.email}", "'https://s3-us-west-1.amazonaws.com/filmed-in/default.jpeg'")`, cb);
     },
     update: function(id, url, cb) {
       db.query(`UPDATE profile SET profileURL = ? WHERE id = ?`, [url, id], cb);
     },
+    updateProfilePicture: (imageUrl, id, cb) => {
+      console.log('imageUrl', imageUrl)
+      db.query('update profile SET imageUrl = ? where id = ?', [imageUrl, id], cb);
+    },
     updatePreferredGenre: (category, id, cb) => {
-      console.log('category:', category);
-      console.log('id', id);
       db.query('update profile SET preferredGenre = ? where id = ?', [category, id], cb);
     },
     updateLeastPreferredGenre: (category, id, cb) => {
-      console.log('category:', category);
-      console.log('id', id);
       db.query('update profile SET leastPreferredGenre = ? where id = ?', [category, id], cb);
     }
   },

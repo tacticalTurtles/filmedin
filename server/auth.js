@@ -15,7 +15,7 @@ module.exports = {
       if (err) {
         next(new Error('Failed to connect to database'));
       }
-      if (rows.length === 0) {
+      if ( rows && rows.length === 0) {
         next(new Error('User does not exist'));
       } else {
         var user = rows[0];
