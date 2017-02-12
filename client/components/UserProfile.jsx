@@ -8,6 +8,7 @@ var UserProfile = ({user, handleFilmClick, handleUserClick, addFriend}) => (
       {console.log(user)}
       <div className="user-left-panel" >
         <div className="user-profile-info">
+          <img className='profilePicture' src={user.profilePicture} />
           <h4 className="user-profile-username">@{user.username}</h4>
           <h1>{user.firstName} {user.lastName}</h1>
           <div onClick={() => {!user.isFriend ? addFriend(user) : console.log("Already friends")}} className="friendStat-profile">

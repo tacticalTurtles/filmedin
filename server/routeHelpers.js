@@ -309,7 +309,8 @@ module.exports = {
   },
 
   updateProfilePicture: (req, res, next) => {
-    db.profile.updateProfilePicture( req.body.ProfilePicture, req.body.id, (err, rows) => {
+    console.log(req.body);
+    db.profile.updateProfilePicture( req.body.profilePicture, req.body.id, (err, rows) => {
       res.send();
     })
   }

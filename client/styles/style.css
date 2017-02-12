@@ -26,6 +26,10 @@ body {
   background-image: none;
 }
 
+.profilePicture {
+  height: 40%;
+  width: 40%;
+}
 .logo-home {
   top:8px;
   left:3px;

@@ -8,7 +8,6 @@ class Profile extends React.Component {
   constructor(props) {
     super(props);
     const {preferredGenre, leastPreferredGenre, imageUrl} = this.props.user;
-    console.log(props);
     this.state = {
       favorite: preferredGenre,
       leastFavorite: leastPreferredGenre,
@@ -19,12 +18,14 @@ class Profile extends React.Component {
     this.handleProfilePictureChange = this.handleProfilePictureChange.bind(this);
   }
 
-  handleProfilePictureChange() {
-    const {user} = this.props;
+  handleProfilePictureChange(filename) {
+    const {user, setProfilePicture} = this.props;
     setTimeout( () => {
+      setProfilePicture(`http://filmed-in.s3.amazonaws.com/${user.username}`)
       this.setState({
-        profilePicture: `http://filmed-in.s3.amazonaws.com/${user.username}`
+        profilePicture: `http://filmed-in.s3.amazonaws.com/${user.username}` 
       })
+
     }, 500)
   }
 
@@ -46,10 +47,9 @@ class Profile extends React.Component {
     const {user, handleFilmClick, handleUserClick, addFriend, handleDropDownPreferred, handleDropDownLeastPreferred} = this.props;
     return (
       <div className="user-profile">
-        {console.log(Object.keys(user))}
         <div className="user-left-panel" >
           <div className="user-profile-info">
-            <img src={this.state.profilePicture} />
+            <img className='profilePicture' src={this.state.profilePicture} />
             <h4 className="user-profile-username">@{user.username}</h4>
             <h1>{user.firstName} {user.lastName}</h1>
             <div onClick={() => { !user.isFriend ? addFriend(user) : console.log('Already friends')}} className='friendStat-profile'>
@@ -121,7 +121,7 @@ class Profile extends React.Component {
 
           <div className="genre-box">
             <form action="http://filmed-in.s3.amazonaws.com/" method="post" encType="multipart/form-data" onSubmit={this.handleProfilePictureChange}>
-               <input type="hidden" name="key" defaultValue={user.username} /><br />
+               <input type="hidden" name="key" defaultValue={user.username}/><br />
                <input type="hidden" name="acl" defaultValue="public-read" />
                <input type="hidden" name="Content-Type" defaultValue="image/jpeg" /><br />
                <input type="hidden" name="x-amz-server-side-encryption" defaultValue="AES256" />
