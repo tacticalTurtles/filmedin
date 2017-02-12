@@ -32,7 +32,9 @@ class ThreadList extends React.Component {
       return (
         <tr key={i} value={thread.topic}>
           <th className="thread" style={{'border': '.5px dotted black'}}><a href="#">{thread.topic}</a></th>
-          <th style={{'border': '.5px dotted black'}}>{thread.username}</th>
+          <th style={{'border': '.5px dotted black'}}>{thread.username}
+            <img src={thread.picture} />
+          </th>
           <th style={{'border': '.5px dotted black'}}>{dateAmerican + ' @ ' + timeWithTimeZone}</th>
         </tr>
       )

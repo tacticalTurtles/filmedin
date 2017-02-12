@@ -11,7 +11,7 @@ module.exports = {
   },
   getMessagesByTopicID: (req, res, next) => {
     const topicID = req.query.topicID;
-    const queryStr = `select distinct user.username, message.message, message.createdAt, message.topicID from topic inner join message on message.topicID = '${topicID}' inner join user where message.userID = user.id`;
+    const queryStr = `select distinct user.username, message.message, message.createdAt, message.topicID, profile.imageUrl from topic inner join message on message.topicID = '${topicID}' inner join user on message.userID = user.id inner join profile on profile.userID = user.id`;
     db.query(queryStr, (err, data) => {
       console.error(err);
       res.json(data);
@@ -22,7 +22,7 @@ module.exports = {
     console.log(title);
     title = title.replace(/\+/gi, ' ');
     console.log('title ', title);
-    const queryStr = `select distinct user.username, message.message, message.createdAt, message.topicID from topic inner join message on message.topicID = (select id from topic where topic.topic = '${title}') inner join user where message.userID = user.id`;
+    const queryStr = `select distinct user.username, message.message, message.createdAt, message.topicID, profile.imageUrl from topic inner join message on message.topicID = (select id from topic where topic.topic = '${title}') inner join user on message.userID = user.id inner join profile on profile.userID = user.id`;
     db.query(queryStr, (err, data) => {
       console.error(err);
       res.json(data);

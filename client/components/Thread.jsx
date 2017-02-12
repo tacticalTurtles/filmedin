@@ -8,7 +8,8 @@ class Thread extends React.Component {
     this.state = {
       threadMessages: this.props.threadMessages,
       currentTopicID: this.props.currentTopicID,
-      currentThreadName: ''
+      currentThreadName: '',
+      imageUrl: this.props.profile.imageUrl
     }
     this.getMessages = this.getMessages.bind(this);
     this.getCurrentTopic = this.getCurrentTopic.bind(this);
@@ -48,24 +49,35 @@ class Thread extends React.Component {
   render() {
     console.log('this state threadmessage', this.state.threadMessages);
     var messages = this.state.threadMessages.map((message, i) => {
+      console.log(message);
       var {dateAmerican, dateWords, timeWithTimeZone } = helpers.timestampParser(message.createdAt);
         if (i === 0) {
           return (
             <div className="container">
               <div className="col-md-3" style={{ 'backgroundColor': '#c0c0c0', 'height': '35px', 'border': '1px solid black' }}></div>
               <div className="col-md-9" style={{ 'backgroundColor': '#c0c0c0', 'height': '35px', 'lineHeight': '35px', 'border': '1px solid black' }}>{ this.state.currentThreadName }<span style={{ 'float': 'right' }}>{dateWords + ' @ ' + timeWithTimeZone}</span></div>
-              <div className="col-md-3" style={{ 'backgroundColor': '#fff', 'height': '150px', 'textAlign': 'center', 'lineHeight': '45px', 'border': '1px solid black', 'marginBottom': '10px' }}>@{message.username}</div>
+              <div className="col-md-3" style={{ 'backgroundColor': '#fff', 'height': '150px', 'textAlign': 'center', 'lineHeight': '45px', 'border': '1px solid black', 'marginBottom': '10px' }}>@{message.username}
+                <div>
+                  <img src={this.state.imageUrl} />
+                </div>
+              </div>
               <div className="col-md-9" style={{ 'backgroundColor': '#fff', 'height': '150px', 'lineHeight': '45px', 'border': '1px solid black', 'marginBottom': '10px' }}>{message.message}</div>
-            </div>
+
+          </div>
           )
         } else {
         return (
           <div className="container">
             <div className="col-md-3" style={{ 'backgroundColor': '#c0c0c0', 'height': '35px', 'border': '1px solid black' }}></div>
             <div className="col-md-9" style={{ 'backgroundColor': '#c0c0c0', 'height': '35px', 'lineHeight': '35px', 'border': '1px solid black' }}>RE: { this.state.currentThreadName }<span style={{ 'float': 'right' }}>{dateWords + ' @ ' + timeWithTimeZone}</span></div>
-            <div className="col-md-3" style={{ 'backgroundColor': '#fff', 'height': '150px', 'textAlign': 'center', 'lineHeight': '45px', 'border': '1px solid black', 'marginBottom': '10px' }}>@{message.username}</div>
+            <div className="col-md-3" style={{ 'backgroundColor': '#fff', 'height': '150px', 'textAlign': 'center', 'lineHeight': '45px', 'border': '1px solid black', 'marginBottom': '10px' }}>@{message.username}
+              <div classn="col-md-3">
+                  <img src={this.state.imageUrl} />
+
+               </div>
+            </div>
             <div className="col-md-9" style={{ 'backgroundColor': '#fff', 'height': '150px', 'lineHeight': '45px', 'border': '1px solid black', 'marginBottom': '10px' }}>{message.message}</div>
-          </div> 
+          </div>
         )
       }
     })
@@ -128,4 +140,3 @@ export default Thread;
     //     />
     //   </div>
     // )
-

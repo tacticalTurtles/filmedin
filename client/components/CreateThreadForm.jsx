@@ -18,7 +18,7 @@ class CreateThreadForm extends React.Component {
     this.setState({
       [e.target.name]: e.target.value
     });
-  } 
+  }
 
   postNewTopic(topicName, topicMessage, userID, username) {
     helpers.postNewTopic(topicName, this.props.username)
