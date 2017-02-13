@@ -244,6 +244,7 @@ class App extends React.Component {
                   userID={this.state.profile.userID}
                   username={this.state.profile.username}
                   profile = {this.state.profile}
+                  handleUserClick={this.handleUserClick}
                 />
             ) : (this.state.view === 'showProfileView') ? (
                 <Profile

@@ -23,7 +23,7 @@ class Profile extends React.Component {
     setTimeout( () => {
       setProfilePicture(`http://filmed-in.s3.amazonaws.com/${user.username}`)
       this.setState({
-        profilePicture: `http://filmed-in.s3.amazonaws.com/${user.username}` 
+        profilePicture: `http://filmed-in.s3.amazonaws.com/${user.username}`
       })
 
     }, 500)

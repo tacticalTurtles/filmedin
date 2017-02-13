@@ -80,6 +80,7 @@ class Forum extends React.Component {
   }
 
   setShowCreateThreadView() {
+    console.log('showing');
     this.setState({
       view: 'showCreateThreadView'
     });
@@ -93,6 +94,7 @@ class Forum extends React.Component {
           handleThreadEntryClick={this.handleThreadEntryClick}
           setShowCreateThreadView={this.setShowCreateThreadView}
           profile={this.props.profile}
+          handleUserClick={this.props.handleUserClick}
         />
       );
     } else if (this.state.view === 'showThreadView') {
@@ -104,6 +106,7 @@ class Forum extends React.Component {
           setShowThreadListView={this.setShowThreadListView}
           setShowThreadView={this.setShowThreadView}
           profile={this.props.profile}
+          handleUserClick={this.props.handleUserClick}
         />
       );
     } else if (this.state.view === 'showCreateThreadView') {
