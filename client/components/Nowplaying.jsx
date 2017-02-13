@@ -54,7 +54,7 @@ class Nowplaying extends React.Component {
 
   render() {
     return (
-    <Carousel className="carouselClass" indicators={false}>
+    <Carousel className="carousel-class" indicators={false}>
       {this.state.currentMovies.map(movie =>
         <Carousel.Item>
           <div className="col-md-12">

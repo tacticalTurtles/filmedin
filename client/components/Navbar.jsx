@@ -55,11 +55,11 @@ class FilmedInNavBar extends React.Component{
           <div className="navbar navbar-default navbar-fixed-top login-bar">
               <div className="container login-bar-container">
                   <div className="navbar-header login-bar-header">
-                      <a className="navbar-brand" href="#">FilmedIn</a>
+                      <span className="navbar-brand glyphicon glyphicon-film" id="logo" />
+                      <a className="navbar-brand title" href="#">FilmedIn</a>
                   </div>
-                  <div className="nav-bar-button nav-bar-home nav-bar-hover" onClick={this.props.handleHomeClick}>HOME</div>
-                  <div className="nav-bar-button nav-bar-hover" onClick={this.props.handleForumClick}>FORUM</div>
-                  <div className="nav-bar-button nav-bar-hover" onClick={this.props.handleProfileClick}>PROFILE</div>
+                  <span className="nav-bar-button nav-bar-home nav-bar-hover glyphicon glyphicon-home" onClick={this.props.handleHomeClick} />
+                  <span className="nav-bar-button nav-bar-hover glyphicon glyphicon-comment" onClick={this.props.handleForumClick} />
                   <div className="nav-bar-button">
                     <input type="text" placeholder="Search Film" onKeyDown={this.searchFilmKeyPress.bind(this)} onChange={this.changeFilm.bind(this)} value={this.state.filmSearch} />
                     <span onClick={this.searchFilm.bind(this)} className="glyphicon glyphicon-search"></span>
@@ -68,12 +68,10 @@ class FilmedInNavBar extends React.Component{
                     <input type="text" placeholder="Search Friends" onKeyDown={this.searchUserKeyPress.bind(this)} onChange={this.changeUser.bind(this)} value={this.state.userSearch}/>
                     <span onClick={this.searchUser.bind(this)} className="glyphicon glyphicon-search"></span>
                   </div>
-                  <div onClick={this.props.handleLogOutClick} className="nav-bar-button nav-bar-logout nav-bar-hover">Logout</div>
-
-
+                  <span onClick={this.props.handleLogOutClick} className="nav-bar-button nav-bar-logout nav-bar-hover glyphicon glyphicon-log-out" />
+                  <span className="nav-bar-button nav-bar-hover nav-bar-logout glyphicon glyphicon-user" onClick={this.props.handleProfileClick} />
               </div>
           </div>
-          <img src="/assets/logo.png" className="logo-home" />
         </div>
 
 

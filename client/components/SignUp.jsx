@@ -124,7 +124,8 @@ class SignUp extends React.Component {
         <div className="navbar navbar-default navbar-fixed-top login-bar">
             <div className="container login-bar-container">
                 <div className="navbar-header login-bar-header">
-                    <a className="navbar-brand" href="#">FilmedIn</a>
+                    <span className="navbar-brand glyphicon glyphicon-film" id="logo" />
+                    <a className="navbar-brand title" href="#">FilmedIn</a>
                 </div>
                 <div className="user-login">
                     <div className="navbar-collapse collapse" id="navbar-main">
@@ -145,7 +146,6 @@ class SignUp extends React.Component {
             </div>
         </div>
         <img src="/assets/poster.jpg" className="background-poster" />
-        <img src="/assets/logo.png" className="logo-home" />
         <div className="sn-jumbotron jumbotron-home welcome-page">
           <div className="float-md-left col-md-7">
           <h1 className="alt-h1 text-shadow-dark text-white lh-condensed mb-3">Get FilmedIn Now!</h1>

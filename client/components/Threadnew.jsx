@@ -52,31 +52,31 @@ class Thread extends React.Component {
       var {dateAmerican, dateWords, timeWithTimeZone } = helpers.timestampParser(message.createdAt);
         if (i === 0) {
           return (
-            <div className="container">
-              <div className="col-md-3" style={{ 'backgroundColor': '#c0c0c0', 'height': '35px', 'border': '1px solid black' }}></div>
-              <div className="col-md-9" style={{ 'backgroundColor': '#c0c0c0', 'height': '35px', 'lineHeight': '35px', 'border': '1px solid black' }}>{ this.state.currentThreadName }<span style={{ 'float': 'right' }}>{dateWords + ' @ ' + timeWithTimeZone}</span></div>
-              <div className="col-md-3" style={{ 'backgroundColor': '#fff', 'height': '150px', 'textAlign': 'center', 'lineHeight': '45px', 'border': '1px solid black', 'marginBottom': '10px' }}>@{message.username}
+            <div className="user-home-feed">
+              <div className="col-md-3"></div>
+              <div className="col-md-9">{dateWords + ' @ ' + timeWithTimeZone}</span></div>
+              <div className="col-md-3">{message.username}
                 <div className="col-md-3">
                   <img className='profilePictureThread' src={message.imageUrl} />
                 </div>
 
               </div>
-              <div className="col-md-9" style={{ 'backgroundColor': '#fff', 'height': '150px', 'lineHeight': '45px', 'border': '1px solid black', 'marginBottom': '10px' }}>{message.message}</div>
+              <div className="col-md-9">{message.message}</div>
 
           </div>
           )
         } else {
         return (
-          <div className="container">
-            <div className="col-md-3" style={{ 'backgroundColor': '#c0c0c0', 'height': '35px', 'border': '1px solid black' }}></div>
-            <div className="col-md-9" style={{ 'backgroundColor': '#c0c0c0', 'height': '35px', 'lineHeight': '35px', 'border': '1px solid black' }}>RE: { this.state.currentThreadName }<span style={{ 'float': 'right' }}>{dateWords + ' @ ' + timeWithTimeZone}</span></div>
-            <div className="col-md-3" style={{ 'backgroundColor': '#fff', 'height': '150px', 'textAlign': 'center', 'lineHeight': '45px', 'border': '1px solid black', 'marginBottom': '10px' }}>@{message.username}
+          <div className="user-home-feed">
+            <div className="col-md-3"></div>
+            <div className="col-md-9">RE: { this.state.currentThreadName }<span style={{ 'float': 'right' }}>{dateWords + ' @ ' + timeWithTimeZone}</span></div>
+            <div className="col-md-3">{message.username}
               <div className="col-md-3">
                   <img className='profilePictureThread' src={message.imageUrl} />
                </div>
 
             </div>
-            <div className="col-md-9" style={{ 'backgroundColor': '#fff', 'height': '150px', 'lineHeight': '45px', 'border': '1px solid black', 'marginBottom': '10px' }}>{message.message}</div>
+            <div className="col-md-9">{message.message}</div>
           </div>
         )
       }
